@@ -14,37 +14,50 @@ type IndexProps = {
 export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
-      <h1><strong >Hey, welcome! This is Saurabh's Blog</strong></h1>
+      <h1>
+        <strong>Hey, welcome! This is Saurabh's Blog</strong>
+      </h1>
 
-      <h1> <strong>
-      <Typewriter
-        onInit={(typewriter) => {
-          typewriter.typeString('I am ')
-          .pauseFor(900)
-          .typeString('a <strong style="color: #27ae60;">Developer </strong>')
-          .pauseFor(1e3)
-          .deleteChars(10)
-          .typeString('<strong style="color: #6A7FDB;">Runner </strong>')
-          .pauseFor(1e3)
-          .deleteChars(10)
-          .typeString('an <strong style="color: #3399ff;">Artist </strong>')
-          .pauseFor(1e3)
-          .deleteChars(10)
-          .typeString('<strong style="color: #00A8E8;">Restless </strong>')
-          .pauseFor(1e3)
-          .deleteAll()
-          .typeString('<strong style="color: #57E2E5;">and much more .... </strong>')
-          .pauseFor(1e3)
-          .deleteAll()
-          .start();
-        }}
-        options={{loop:true,delay:60}}
-        />
+      <h1>
+        {' '}
+        <strong>
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString('I am ')
+                .pauseFor(900)
+                .typeString(
+                  'a <strong style="color: #27ae60;">Developer </strong>'
+                )
+                .pauseFor(1e3)
+                .deleteChars(10)
+                .typeString('<strong style="color: #6A7FDB;">Runner </strong>')
+                .pauseFor(1e3)
+                .deleteChars(10)
+                .typeString(
+                  'an <strong style="color: #3399ff;">Artist </strong>'
+                )
+                .pauseFor(1e3)
+                .deleteChars(10)
+                .typeString(
+                  '<strong style="color: #00A8E8;">Restless </strong>'
+                )
+                .pauseFor(1e3)
+                .deleteAll()
+                .typeString(
+                  '<strong style="color: #57E2E5;">and much more .... </strong>'
+                )
+                .pauseFor(1e3)
+                .deleteAll()
+                .start();
+            }}
+            options={{ loop: true, delay: 60 }}
+          />
         </strong>
       </h1>
-      
+
       <p>I write about technology, esoteric knowledge and pop culture</p>
-      
+
       {posts.map((post) => (
         <article key={post.slug} className="mt-12">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
