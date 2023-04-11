@@ -4,7 +4,7 @@ description: Continuation of our rudimentary implementation of a DB.
 date: '2023-04-11'
 ---
 
-## Making a DB (Part 2)
+Haven't read part 1? Check it out [here](/posts/making-a-db-part-1)
 
 We continue our journey to create a viable DB. We'll learn about SS-Table and LSM-Tree in this chapter of our journey.
 
@@ -14,7 +14,12 @@ We call this format Sorted String Table, or SS-Table for short. We also require 
 
 We'll still need an in-memory index to tell you the offsets for some of the keys, but it can be sparse. This helps in finding the keys faster. Let's take an example to understand better.
 
-### image-0
+<Image
+  alt={'making-a-db-part-2-image-0'}
+  src="/images/making-a-db-part-2-image-0.png"
+  width={1000}
+  height={381}
+/>
 
 Let's say we have a key called handiwork. We'll search the sparse index for `handbag` and obtain the offset. This will be used to search the small compressed block for handiwork. We'll get the offset for handiwork and we'll go to the log file offset to find the value. This can also be viewed as a nested offset-looking operation.
 

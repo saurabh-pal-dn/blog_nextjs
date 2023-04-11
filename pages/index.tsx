@@ -5,6 +5,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
+import Typewriter from 'typewriter-effect';
 
 type IndexProps = {
   posts: PostType[];
@@ -13,22 +14,37 @@ type IndexProps = {
 export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
-      <h1>Hey! Welcome this is Saurabh's BlogHome Page</h1>
+      <h1><strong >Hey, welcome! This is Saurabh's Blog</strong></h1>
+
+      <h1> <strong>
+      <Typewriter
+        onInit={(typewriter) => {
+          typewriter.typeString('I am ')
+          .pauseFor(900)
+          .typeString('a <strong style="color: #27ae60;">Developer </strong>')
+          .pauseFor(1e3)
+          .deleteChars(10)
+          .typeString('<strong style="color: #6A7FDB;">Runner </strong>')
+          .pauseFor(1e3)
+          .deleteChars(10)
+          .typeString('an <strong style="color: #3399ff;">Artist </strong>')
+          .pauseFor(1e3)
+          .deleteChars(10)
+          .typeString('<strong style="color: #00A8E8;">Restless </strong>')
+          .pauseFor(1e3)
+          .deleteAll()
+          .typeString('<strong style="color: #57E2E5;">and much more .... </strong>')
+          .pauseFor(1e3)
+          .deleteAll()
+          .start();
+        }}
+        options={{loop:true,delay:60}}
+        />
+        </strong>
+      </h1>
+      
       <p>I write about technology, esoteric knowledge and pop culture</p>
-      {/* <ul className="list-disc pl-4 my-6">
-        <li>Next.js</li>
-        <li className="mt-2">Typescript</li>
-        <li className="mt-2">MDX</li>
-        <li className="mt-2">Tailwind CSS</li>
-      </ul> */}
-
-      {/* <a
-        href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
-        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
-      >
-        Get the source code for this blog!
-      </a> */}
-
+      
       {posts.map((post) => (
         <article key={post.slug} className="mt-12">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
