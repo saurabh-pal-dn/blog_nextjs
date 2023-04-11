@@ -1,0 +1,42 @@
+---
+title: Making a DB (Part 1)
+description: A quick intoduction into the intricate working of a simple Database; How a simple DB can be implemented using DS.
+date: '2023-04-11'
+---
+
+## Making a DB (Part 1)
+
+In this chapter, we will do a shallow dive into the world of data storage and a rudimentary way to store data in some DBs.
+
+Let's say you want to store some information and then retrieve it later. This seems like a trivial task. Just write to a file and then read it off the file. This simple solution works at a small scale and can be scaled with some inspiration.
+
+Let's take a simple case, we can save the data in a key-value pair to an append only file. Whenever we want to read the value of a key we'll read the file from bottom to top(most recent first) and show the value we thus get. We can do better, let's create a hashMap to store the offset where a key-value is stored for each key.
+
+### image-0
+
+As per the figure, the key-value of key 42 is stored at offset 64, so we can quickly read the key-value.
+This may sound simplistic, but it is a viable approach. In fact, this is essentially what Bitcask (the default storage engine in Riak) does. This has a great use case when the value changes frequently but the keys are not numerous. For example, for a small article hosting site, where the number of articles is small but we want to update the view counter frequently (ah. ah. my blog maybe…..)
+What happens if the log file increase to a large size? Compaction comes to the rescue. Go through the log file and just take the latest of the key and discard the rest, save this to a new file, and discard the old log file, if a write comes in the meantime, just write it to a new log file.
+
+### image-1
+
+Seems easy!!
+
+Now we are dealing with multiple log files, remember the one we created while compacting? Now we can also do merging and compaction in a single operation. Let's call it C&M (compacting and merging), this works like merge sort, and we just take the latest value of the key across multiple log files.
+
+Now we have a solid base for creating our simple database. We just need to take care of a few things to make this production ready, namely:
+
+1. Crash recovery
+2. Deletion of records
+3. File format
+4. Partially written records
+5. Concurrency control
+
+**Discussion**
+
+Why do we have to append-only logs instead of change in place?
+
+_We can run C&M in background as the logs are immutable. This makes concurrency and crash recovery much simpler to implement._
+
+What happens if we have a lot of keys?
+Keeping an in-memory HashMap is quite expensive and prone to data corruption. Hash collisions and keeping an on-disk hashMap involve fiddly logic. It's best to look elsewhere.

@@ -1,0 +1,30 @@
+---
+title: Making a DB (Part 2)
+description: Continuation of our rudimentary implementation of a DB.
+date: '2023-04-11'
+---
+
+## Making a DB (Part 2)
+
+We continue our journey to create a viable DB. We'll learn about SS-Table and LSM-Tree in this chapter of our journey.
+
+Each log-structured storage segment is a sequence of key-value pairs. These pairs appear in the order that they were written, and values later in the log take precedence over values for the same key earlier in the log. Apart from that, the order of key-value pairs in the file does not matter. We can make a small adjustment like sorted-by-key, to fix our problems.
+
+We call this format Sorted String Table, or SS-Table for short. We also require that each key only appears once within each merged segment file (the C&M process already ensures that).
+
+We'll still need an in-memory index to tell you the offsets for some of the keys, but it can be sparse. This helps in finding the keys faster. Let's take an example to understand better.
+
+### image-0
+
+Let's say we have a key called handiwork. We'll search the sparse index for `handbag` and obtain the offset. This will be used to search the small compressed block for handiwork. We'll get the offset for handiwork and we'll go to the log file offset to find the value. This can also be viewed as a nested offset-looking operation.
+
+How do we store our keys in sorted order when the writes are coming in randomly? We can use any of the data structures available, like Red-Black trees or AVL trees.
+As done before we can run a merging and compaction process in the background to combine segment files and discard overwritten or deleted values.
+
+This works exceptionally well except in the case of a crash most recent writes are lost (they are present in memory but not in writing to the disk). In order to avoid that problem, we can keep a separate log on the disk to which every write is immediately appended. The log is not in sorted order but its only purpose is to build the in-memory table in times of crash, we can afford this to be a good fallback.
+
+## Facts un nerds (FUN)
+
+Originally this indexing structure was described by Patrick O'Neil under the name Log-Structured Merge-Tree (LSM-Tree). These LSM-Tree are used by various DBs like LevelDB and RocksDB.
+
+LSM-Tree are slow when searching for a key that doesn't exist. This can be solved by using a _[bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)_.

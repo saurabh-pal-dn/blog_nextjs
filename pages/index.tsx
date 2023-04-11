@@ -13,21 +13,21 @@ type IndexProps = {
 export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
-      <h1>Home Page</h1>
-      <p>Next.js starter for your next blog or personal site. Built with:</p>
-      <ul className="list-disc pl-4 my-6">
+      <h1>Hey! Welcome this is Saurabh's BlogHome Page</h1>
+      <p>I write about technology, esoteric knowledge and pop culture</p>
+      {/* <ul className="list-disc pl-4 my-6">
         <li>Next.js</li>
         <li className="mt-2">Typescript</li>
         <li className="mt-2">MDX</li>
         <li className="mt-2">Tailwind CSS</li>
-      </ul>
+      </ul> */}
 
-      <a
+      {/* <a
         href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
         className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
       >
-        Get the source code!
-      </a>
+        Get the source code for this blog!
+      </a> */}
 
       {posts.map((post) => (
         <article key={post.slug} className="mt-12">
