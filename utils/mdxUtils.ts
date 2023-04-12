@@ -12,7 +12,7 @@ export const postFilePaths = fs
   // Only include md(x) files
   .filter((path) => /\.mdx?$/.test(path));
 
-export const popPostFilePaths = fs
-  .readdirSync(POP_POSTS_PATH)
-  // Only include md(x) starting with pop files
-  .filter((path) => /\.mdx?$/.test(path));
+// export const popPostFilePaths = fs
+//   .readdirSync(POP_POSTS_PATH)
+//   // Only include md(x) starting with pop files
+//   .filter((path) => /\.mdx?$/.test(path));
