@@ -7,7 +7,7 @@ import { getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
 import Typewriter from 'typewriter-effect';
 
-type IndexProps = {
+export type IndexProps = {
   posts: PostType[];
 };
 
@@ -19,7 +19,6 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </h1>
 
       <h1>
-        {' '}
         <strong>
           <Typewriter
             onInit={(typewriter) => {
