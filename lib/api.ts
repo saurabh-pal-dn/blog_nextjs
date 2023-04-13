@@ -43,25 +43,22 @@ function sanitizeFields(ctx: {
   return items;
 }
 
-export function getPostSlugs(): string[] {
+function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
-export function getPopPostSlugs(): string[] {
+function getPopPostSlugs(): string[] {
   return fs.readdirSync(POP_POSTS_PATH);
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []): PostItems {
+function getPostBySlug(slug: string, fields: string[] = []): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
   if (checkForPopMdx(fullPath)) return null;
   return sanitizeFields({ fields, fullPath, slug });
 }
 
-export function getPopPostBySlug(
-  slug: string,
-  fields: string[] = []
-): PostItems {
+function getPopPostBySlug(slug: string, fields: string[] = []): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POP_POSTS_PATH, `${realSlug}.mdx`);
   return sanitizeFields({ fields, fullPath, slug });

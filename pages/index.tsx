@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import Layout from '../components/Layout';
-import { getAllPosts } from '../lib/api';
+import { getAllPopPosts, getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
 import Typewriter from 'typewriter-effect';
 
@@ -83,9 +83,10 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-
+  const popPosts = getAllPopPosts(['date', 'description', 'slug', 'title']);
+  const allPosts = posts.concat(popPosts);
   return {
-    props: { posts },
+    props: { posts: allPosts },
   };
 };
 
