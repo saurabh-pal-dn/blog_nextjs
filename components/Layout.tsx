@@ -35,7 +35,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
             rel="noopener noreferrer"
             href="https://github.com/saurabh-pal-dn"
             title="GitHub"
-            className="px-3"
+            className="px-2"
           >
             <button type="button" aria-label="GitHub">
               <svg
@@ -60,7 +60,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
             rel="noopener noreferrer"
             href="https://www.linkedin.com/in/saurabh-pal-a340a0151/"
             title="LinkedIn"
-            className="px-3"
+            className="px-2"
           >
             <button type="button" aria-label="LinkedIn">
               <svg
@@ -87,7 +87,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
             rel="noopener noreferrer"
             href="mailto:saurabh.pal.dn@gmail.com"
             title="Email"
-            className="px-3"
+            className="px-2"
           >
             <button type="button" aria-label="Email">
               <svg

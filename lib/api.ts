@@ -8,7 +8,7 @@ type PostItems = {
 };
 
 function checkForPopMdx(fullPath: string): boolean {
-  return /\\pop.mdx$/.test(fullPath);
+  return /.pop.mdx$/.test(fullPath);
 }
 
 function getPostHelperFunction(posts: PostItems[]) {
