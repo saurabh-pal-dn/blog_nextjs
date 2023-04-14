@@ -3,6 +3,7 @@ import { MetaProps } from '../types/layout';
 import Head from './Head';
 import Navigation from './Navigation';
 import ThemeSwitch from './ThemeSwitch';
+import SpotifyTab from './SpotifyTab';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
       <main>
         <div className="max-w-5xl px-8 py-4 mx-auto">{children}</div>
       </main>
+      <SpotifyTab />
       <footer className="flex items-center justify-center">
         <div>
           <a

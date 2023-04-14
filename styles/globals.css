@@ -151,3 +151,136 @@ pre {
 .highlight-line {
   @apply block px-4 -mx-4 bg-gray-100 border-l-4 border-blue-500 dark:bg-gray-800;
 }
+
+.css-ewsei0 {
+  margin-bottom: var(--chakra-space-4);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  border: 1px solid;
+  border-radius: 8px;
+  border-color: #c2bdbd;
+  padding: var(--chakra-space-2);
+  width: 300px;
+}
+
+.css-foz3qc {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: var(--chakra-space-8);
+  padding-bottom: var(--chakra-space-8);
+}
+
+.css-hjkpk0 {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  margin-left: auto;
+  margin-top: var(--chakra-space-1);
+  padding: 1%;
+}
+
+.css-foz3qc {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: var(--chakra-space-8);
+  padding-bottom: var(--chakra-space-8);
+}
+
+.css-1febq2i {
+  height: 90px;
+  width: 90px;
+  border-radius: 18px;
+  padding: 10%;
+}
+
+.css-1meimlm {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-left: var(--chakra-space-3);
+}
+.css-1meimlm > *:not(style) ~ *:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.css-mxtkhh {
+  transition-property: var(--chakra-transition-property-common);
+  transition-duration: var(--chakra-transition-duration-fast);
+  transition-timing-function: var(--chakra-transition-easing-ease-out);
+  cursor: pointer;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  color: inherit;
+  font-weight: var(--chakra-fontWeights-medium);
+  max-width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 3px;
+  font-weight: bold;
+}
+
+.css-1vsww04 {
+  font-weight: 300;
+}
+
+.css-mxtkhh:hover,
+.css-mxtkhh[data-hover] {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+.css-mxtkhh:focus,
+.css-mxtkhh[data-focus] {
+  box-shadow: var(--chakra-shadows-outline);
+}
