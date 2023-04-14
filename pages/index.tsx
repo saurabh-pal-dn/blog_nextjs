@@ -82,9 +82,6 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  console.log('here0');
-  console.log(process.env.SPOTIFY_CLIENT_ID);
-  console.log('here1');
   const posts = getAllPosts(['date', 'description', 'slug', 'title']);
   const popPosts = getAllPopPosts(['date', 'description', 'slug', 'title']);
   const allPosts = posts.concat(popPosts);
