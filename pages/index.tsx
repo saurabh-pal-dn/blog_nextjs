@@ -15,7 +15,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
       <h1>
-        <strong>Hey, welcome! This is Saurabh's Blog</strong>
+        <strong>Hey, welcome! This is Saurabh&apos;s Blog</strong>
       </h1>
 
       <h1>
