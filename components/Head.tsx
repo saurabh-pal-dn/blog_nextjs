@@ -11,8 +11,8 @@ const Head = ({ customMeta }: { customMeta?: MetaProps }): JSX.Element => {
   const meta: MetaProps = {
     title: 'Saurabh Pal - Blog',
     description:
-      'Young dump and hungry to learn. A learned developer who likes to read bout technology and talk about pop culture. PS I love the color black.',
-    image: `${WEBSITE_HOST_URL}/images/site-preview.png`,
+      'Young, dumb and hungry to learn. A learned developer who likes to read about technology and talk on pop culture. PS I love the color black.',
+    image: `${WEBSITE_HOST_URL}/images/site-preview.jpg`,
     type: 'website',
     ...customMeta,
   };
