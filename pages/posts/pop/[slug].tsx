@@ -35,7 +35,7 @@ const PopPostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
     description: frontMatter.description,
     image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
     date: frontMatter.date,
-    type: 'article',
+    type: 'PopCulture',
   };
   return (
     <Layout customMeta={customMeta}>

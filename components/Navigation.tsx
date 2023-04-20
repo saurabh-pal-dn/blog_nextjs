@@ -8,7 +8,7 @@ const Navigation = (): JSX.Element => {
         <a className="text-gray-900 dark:text-white pr-6 py-4">Home</a>
       </Link>
       <Link href="/blog">
-        <a className="text-gray-900 dark:text-white px-6 py-4">Blog</a>
+        <a className="text-gray-900 dark:text-white px-6 py-4">Tech</a>
       </Link>
       <Link href="/dashboard">
         <a className="text-gray-900 dark:text-white px-6 py-4">Dashboard</a>
@@ -17,7 +17,7 @@ const Navigation = (): JSX.Element => {
         <a className="text-gray-900 dark:text-white px-6 py-4">About</a>
       </Link>
       <Link href="/pop">
-        <a className="text-gray-900 dark:text-white px-6 py-4">Pop Culture</a>
+        <a className="text-gray-900 dark:text-white px-6 py-4">Pop Cult</a>
       </Link>
     </nav>
   );
