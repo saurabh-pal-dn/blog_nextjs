@@ -4,21 +4,21 @@ description: A brief history of locking and the most popular technique used in D
 date: '2023-04-11'
 ---
 
-## Why we need locking in the first place?
+## Why do we need locking in the first place?
 
-Lets suppose you have 2 clients making requests to a single resource and we want to avoid any race conditions from happening. As an example, let’s consider 2 users (A and B) want to read and update a variable by 1. If both of them access the variable at the same time, they will update the value simultaneously leading to a race condition. We need to impose locking to prevent the data from being corrupted.
+Let's suppose you have 2 clients making requests to a single resource and we want to avoid any race conditions from happening. As an example, let’s consider 2 users (A and B) who want to read and update a variable by 1. If both of them access the variable at the same time, they will update the value simultaneously leading to a race condition. We need to impose locking to prevent the data from being corrupted.
 
 ## Why 2PL?
 
-We have the option to use serializable isolation to prevent race condition(RC). Serialization basically means every instruction is carried one after another. Another way to express this is, that all the instructions can be ran parallelly and the end result would be same, as they are non-conflicting. This causes the DB to acure lock on each resource and not release it unless all the operations on it are commited. This leads to loss of concurrency and high latency. A single high demanding task can pause the remaining operations for a long time.
-Now lets consider 2PL
+We have the option to use serializable isolation to prevent race conditions (RC). Serialization basically means every instruction is carried one after another. Another way to express this is, that all the instructions can be run parallelly and the end result would be same, as they are non-conflicting. This causes the DB to acquire lock on each resource and not release it unless all the operations on it are committed. This leads to loss of concurrency and high latency. A single high-demanding task can pause the remaining operations for a long time.
+Now let's consider 2PL
 
 First some definitions:
 
 1. Shared lock: Multiple clients can acquire a shared lock to read, if an update is required they must wait for the shared lock to be released
 2. Exclusive lock: A single client must acquire an exclusive lock to update the value. Any read must wait for the exclusive lock to be released
 
-Now that we have the basics covered, lets define 2PL
+Now that we have the basics covered, let's define 2PL
 
 If a transaction wants to read an object, it must first acquire the lock in shared mode. Several transactions are allowed to hold the lock in shared mode simultaneously, but if another transaction already has an exclusive lock on the object, the transaction must wait.
 
@@ -32,11 +32,11 @@ The 2 phases are when the locks are acquired and the second phase is when the lo
 
 ## Challenges
 
-1. Traditional DBs don’t possess a time limit of a transaction, if one transaction has to wait for other, long queues may be formed that have to wait for several others to complete before processing.
-2. Deadlocks can happen. Though DBs generally resolve DBs automatically, but any transaction terminated has to abort all its work, that is retired. If deadlocks are frequent, that results in lots of wasted work.
+1. Traditional DBs don’t possess a time limit for a transaction, if one transaction has to wait for another, long queues may be formed that have to wait for several others to complete before processing.
+2. Deadlocks can happen. Though DBs generally resolve DBs automatically, but any transaction terminated has to abort all its work, which is retired. If deadlocks are frequent, that results in lots of wasted work.
 
 ## A better solution?
 
-Worry not, we have a better soultion at hand(atleast for some cases). We may describe 2PL as Pessimistic concurrency control, and serializable locking takes this to the extreme. We can opt for optimistic concurrency control in the form of serializable snapshot isolation. We allow transactions to happen anyway in the hope that everything will turn out okay. We a transaction wants to commits the DB checks whether isolation is violated, if yes the transaction is aborted and retried.
+Worry not, we have a better solution at hand(at least for some cases). We may describe 2PL as Pessimistic concurrency control, and serializable locking takes this to the extreme. We can opt for optimistic concurrency control in the form of serializable snapshot isolation. We allow transactions to happen anyway in the hope that everything will turn out okay. We a transaction wants to commit the DB checks whether isolation is violated, if yes the transaction is aborted and retried.
 
 It performs badly if there is high contention, this leads to a high proportion of transactions needing to abort.

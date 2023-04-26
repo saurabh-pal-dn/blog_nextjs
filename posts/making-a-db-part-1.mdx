@@ -1,6 +1,6 @@
 ---
 title: Making a DB (Part 1)
-description: A quick intoduction into the intricate working of a simple Database; How a simple DB can be implemented using DS.
+description: A quick introduction to the intricate working of a simple Database; How a simple DB can be implemented using DS.
 date: '2023-02-11'
 ---
 
@@ -44,7 +44,7 @@ Now we have a solid base for creating our simple database. We just need to take 
 
 Why do we have to append-only logs instead of change in place?
 
-_We can run C&M in background as the logs are immutable. This makes concurrency and crash recovery much simpler to implement._
+_We can run C&M in the background as the logs are immutable. This makes concurrency and crash recovery much simpler to implement._
 
 What happens if we have a lot of keys?
 Keeping an in-memory HashMap is quite expensive and prone to data corruption. Hash collisions and keeping an on-disk hashMap involve fiddly logic. It's best to look elsewhere.

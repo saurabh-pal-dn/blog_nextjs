@@ -1,5 +1,5 @@
 ---
-title: Elliptic Curve Cryptograpgy
+title: Elliptic Curve Cryptography
 description: We look under the hood and understand the mathematical concept behind the new cryptography algorithm
 date: '2023-04-18'
 ---
@@ -8,7 +8,7 @@ date: '2023-04-18'
 
 Cryptography is the science and practice of securing communication through the use of mathematical algorithms and protocols to transform plain text into a secret code or cipher, making it unreadable without the proper key or password.
 
-Now that we have the mundane definition out of the way we can focus on more mathematical stuff. This post builds upon the fact that you know the basic mechanism of encryption/decryption and have a working understanding of [RSA](<https://en.wikipedia.org/wiki/RSA_(cryptosystem)>). If you want a refresher, you can watch an [amazing explaination](https://youtu.be/GSIDS_lvRv4) by computerphile.
+Now that we have the mundane definition out of the way we can focus on more mathematical stuff. This post builds upon the fact that you know the basic mechanism of encryption/decryption and have a working understanding of [RSA](<https://en.wikipedia.org/wiki/RSA_(cryptosystem)>). If you want a refresher, you can watch an [amazing explanation](https://youtu.be/GSIDS_lvRv4) by computerphile.
 
 ### What is an Elliptic Curve
 
@@ -34,7 +34,7 @@ We had a starting point _A_, and then we made it do a thing _n_ times to get a n
 
 ![That what she said gif](/images/elliptic-curve-cryptography-image-2.gif)
 
-The simple example above is great to understand things, but we need a special kind of curve to work in our cryptographic system. We will restrict ourselves to whole numbers in a fixed range. We will roll over the number (aka take mod), when we go out of our range and take this maximum as a prime number.
+The simple example above is great to understand things, but we need a special kind of curve to work in our cryptographic system. We will restrict ourselves to whole numbers in a fixed range. We will roll over the number (aka take mod) when we go out of our range and take this maximum as a prime number.
 
 If we are to understand it with and example, let's suppose we have the curve y^2 = x^3 - x + 1 we get:
 
@@ -44,29 +44,29 @@ If we choose the maximum as 97 then we get:
 
 ![](/images/elliptic-curve-cryptography-image-4.png)
 
-As you can observe it still resembles the original curve just with some restrictions. It has retained it's horizontal symmetry. It even has the properties of dot product intact as it is a subset of the original curve.
+As you can observe it still resembles the original curve just with some restrictions. It has retained its horizontal symmetry. It even has the properties of dot product intact as it is a subset of the original curve.
 
 ![](/images/elliptic-curve-cryptography-image-5.gif)
 
 ### Piecing it all together
 
-Now we have everything, let's glue the pieces together. To create a cryptography system we will define a prime number as a maximum (it is generally a [Mersenne prime](https://en.wikipedia.org/wiki/Mersenne_prime)), a curve equation and a public point on the curve. A private key **PK** is a number, and the public key is the public point dotted itself **PK** times. Computing **PK** from the public key in this system is called the **elliptic curve discrete logarithm function**. Researchers haven't got any major breakthrough in solving this apart from the convention mechanism and it has proved to be quite robust against any heuristic solutions. In layman terms there doesn't appear to be a shortcut that is narrowing the gap in a Trapdoor Function based around this problem.
+Now we have everything, let's glue the pieces together. To create a cryptography system we will define a prime number as a maximum (it is generally a [Mersenne prime](https://en.wikipedia.org/wiki/Mersenne_prime)), a curve equation and a public point on the curve. A private key **PK** is a number, and the public key is the public point dotted itself **PK** times. Computing **PK** from the public key in this system is called the **elliptic curve discrete logarithm function**. Researchers haven't got any major breakthrough in solving this apart from the convention mechanism and it has proved to be quite robust against any heuristic solutions. In layman's terms, there doesn't appear to be a shortcut that narrows the gap in a Trapdoor Function based on this problem.
 
-This can now be used to encrypt the data by selecting appropriate public key, private key and curve equation.
+This can now be used to encrypt the data by selecting the appropriate public key, private key and curve equation.
 
 ### Advantages
 
-1. Shorter key lengths: ECC provides the same level of security with shorter key lengths than RSA. For example, a 256-bit ECC key provides the same level of security as a 3072-bit RSA key. To put this into perspetive, breaking a 228-bit RSA key requires less energy to than it takes to boil a teaspoon of water. Comparatively, breaking a 228-bit elliptic curve key requires enough energy to boil all the water on earth.<sup>[1]</sup>
+1. Shorter key lengths: ECC provides the same level of security with shorter key lengths than RSA. For example, a 256-bit ECC key provides the same level of security as a 3072-bit RSA key. To put this into perspective, breaking a 228-bit RSA key requires less energy than it takes to boil a teaspoon of water. Comparatively, breaking a 228-bit elliptic curve key requires enough energy to boil all the water on Earth.<sup>[1]</sup>
 1. Faster Performance: ECC requires less processing power and memory, making it ideal for low-power devices, such as smartphones and IoT devices.
 
 ### The downside
 
-It is not all roses in the world of elliptic curves, there have be tremors of distrust in the researchers.
+It is not all roses in the world of elliptic curves, there have been tremors of distrust in the researchers.
 A RNG standardized by NIST and promoted by NSA **Dual_EC_DRBG**, has been suspected of being [designed with a backdoor](http://blog.cryptographyengineering.com/2013/09/the-many-flaws-of-dualecdrbg.html). There has been progress in developing curves with efficient arithmetic outside of NIST, including [curve 25519](https://en.wikipedia.org/wiki/Curve25519) created by Daniel Bernstein.
 
 ### Applications
 
-It is used by cloudflare for secure communication protocols, such as SSL/TLS, SSH, and IPSec. Widely used in mobiles devices due to limited processing power and memory. It is the backbone behind Bitcoin and some other cryptos for digital signatures. It is used in your Teslas and iMessage service for secure comms.
+It is used by cloudflare for secure communication protocols, such as SSL/TLS, SSH, and IPSec. Widely used in mobile devices due to limited processing power and memory. It is the backbone behind Bitcoin and some other cryptos for digital signatures. It is used in your Teslas and iMessage service for secure comms.
 
 [[1]](http://eprint.iacr.org/2013/635.pdf) Universal security from bits and mips to pools, lakes - and beyond
 Credits: [Cloudflare blog](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
