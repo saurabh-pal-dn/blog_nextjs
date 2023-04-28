@@ -4,8 +4,6 @@ description: Netflix uses it for backend communications. I wonder why 🤔
 date: '2023-04-28'
 ---
 
-# REST
-
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) stands for Representational State Transfer. We all know that. One big misconception is that REST is a protocol, rather it is a design philosophy that builds upon the principles of HTTP. It emphasizes simple data formats, and content type negotiation and offers great practices that can be implemented greatly in a micro-service architecture.
 
 ## RPCs
@@ -31,8 +29,10 @@ Based on the implementation, we can have the client make the RPC synchronously o
 We will take a practical implementation of gRPC which has gained huge popularity lately: (gRPC)[https://grpc.io/].
 If we have multiple backend systems that need to communicate with each other we need a robust microservice architecture. This means a lot of API calls and a lot of error handling and interface design decisions. Implementation, maintenance, and upgradation of these microservices while ensuring constant communication can get messy real quick. We would need to handle all the different client libraries, ascertain their compatibility and ensure security. That can be a lot of code and who wants to code! How about we make our life a little easier?
 
-We need to define the protocol buffer, specify the procedures(read `functions`) we want to expose to the outside world and return types. The same tooling is used to generate the client and server code from the proto file.
-This makes communication langrage-agnostic and the backend system can use different langues for different works.
+We need to define the protocol buffer, specify the procedures (read `functions`) we want to expose to the outside world and return types. The same tooling is used to generate the client and server code from the proto file.
+![](/images/remote-procedure-calls-image-0.png/)
+
+This makes communication language-agnostic and the backend system can use different languages for different works.
 A downside is that gRpc is not supported by web browsers right now; limiting its use to inter-server communications.
 
 ## Advantages of gRPC
