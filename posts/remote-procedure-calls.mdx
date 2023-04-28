@@ -47,7 +47,7 @@ Though the premise of RPCs may seem promising it has some fundamental flaws.
 
 1. The RPCs are made over the network which is unpredictable. The request or response may be lost due to network issues.
 
-1. A local call may return/throw/void, a network may timeout as well. If you don't get a response you cannot assume anything about the call execution.
+1. A local call may return/throw/void, and a network may timeout as well. If you don't get a response you cannot assume anything about the call execution.
 
 1. Idempotency must be built into the protocol to retry a failed network request.
 
