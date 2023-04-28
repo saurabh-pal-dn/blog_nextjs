@@ -1,0 +1,60 @@
+---
+title: Remote Procedure Calls
+description: A brief history of locking and the most popular technique used in DBs
+date: '2023-04-28'
+---
+
+# REST
+
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) stands for Representational State Transfer. We all know that. One big misconception is that REST is a protocol, rather it is a design philosophy that builds upon the principles of HTTP. It emphasizes simple data formats, and content type negotiation and offers great practices that can be implemented greatly in a micro-service architecture.
+
+## RPCs
+
+[Remote Procedure Calls](https://en.wikipedia.org/wiki/Remote_procedure_call) offer a different way to interact data among computers which has been around 1970s and a lot of tech like DCOM and COBRA (Common Object Request Broker Architecture) are based on it. The RPC model tries to request a remote network service that looks the same as calling a method in your programming language. The sequence looks like this:
+
+1. The client calls the client stub. This is a simple function call with parameters.
+1. The client stub packs the parameters into a message and makes a system call to send the message.
+1. Client OS sends the message to the server.
+1. The server OS passes the message to server stub.
+1. The server stub unpacks the parameters from the message
+1. Finally, the server calls the server function with parameters
+1. The reply tracks the route backs wards.
+
+Based on the implementation, we can have the client make the RPC synchronously or asynchronously.
+
+## Protocol Buffers
+
+[Protocol Buffers](https://protobuf.dev/) are a language-neutral, platform-neutral extensible mechanism for serializing structured data. We should think of them as a `struct` or `schema` that can be used across different languages. The `proto compiler` will generate the necessary code for various languages as per the protocol buffer. It offers cross-language compatibility, forward and backward-compatible nature, and high-performance communication (for small data sizes).
+
+## gRPC
+
+We will take a practical implementation of gRPC which has gained huge popularity lately: (gRPC)[https://grpc.io/].
+If we have multiple backend systems that need to communicate with each other we need a robust microservice architecture. This means a lot of API calls and a lot of error handling and interface design decisions. Implementation, maintenance, and upgradation of these microservices while ensuring constant communication can get messy real quick. We would need to handle all the different client libraries, ascertain their compatibility and ensure security. That can be a lot of code and who wants to code! How about we make our life a little easier?
+
+We need to define the protocol buffer, specify the procedures(read `functions`) we want to expose to the outside world and return types. The same tooling is used to generate the client and server code from the proto file.
+This makes communication langrage-agnostic and the backend system can use different langues for different works.
+A downside is that gRpc is not supported by web browsers right now; limiting its use to inter-server communications.
+
+## Advantages of gRPC
+
+1. Performance: proto-buffers are serialized in binary, built on HTTP/2
+1. Low latency
+1. Polyglot environment support
+
+## Drawbacks of RPCs
+
+Though the premise of RPCs may seem promising it has some fundamental flaws.
+
+1. The RPCs are made over the network which is unpredictable. The request or response may be lost due to network issues.
+
+1. A local call may return/throw/void, a network may timeout as well. If you don't get a response you cannot assume anything about the call execution.
+
+1. Idempotency must be built into the protocol to retry a failed network request.
+
+1. Unlike local calls you cannot pass the reference of objects and the objects must be serialized to be sent over the network.
+
+All these factors mean that there's no point in trying to make the remote service look too much like a local object. The idealogy embraced by REST is that it doesn't try to hide the fact that it's a _network_ philosophy.
+
+## Future
+
+RPC isn't going anywhere. The new generation of RPC frameworks are more explicit about the fact that a remote request is different from a local call. Some even provide _service discovery_ - allowing a client to find out which IP address it can find a particular service. There is still no agreement on how API versioning should work.
