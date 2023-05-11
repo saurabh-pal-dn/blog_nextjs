@@ -18,7 +18,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
       <Head customMeta={customMeta} />
       <header>
         <div className="max-w-5xl px-8 mx-auto">
-          <div className="flex items-center justify-between py-6">
+          <div className="whitespace-nowrap ... flex items-center justify-between py-6 overflow-auto">
             <Navigation />
             <ThemeSwitch />
           </div>
