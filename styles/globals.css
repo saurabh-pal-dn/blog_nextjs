@@ -167,7 +167,7 @@ pre {
   align-items: flex-start;
   border: 1px solid;
   border-radius: 8px;
-  border-color: #c2bdbd;
+  border-color: #7a7575;
   padding: var(--chakra-space-2);
   width: 300px;
 }
