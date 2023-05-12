@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import Link from 'next/link';
 
 export const About = (): JSX.Element => {
   return (
@@ -13,9 +14,12 @@ export const About = (): JSX.Element => {
       </h1>
       <p>
         Hey! I&apos;m a software developer working in RBI as a manager. I have
-        deep interest in Finance and technology and working towards being a
-        rockstar in the Fin-Tech domain. In my free time I watch documentaries
-        and read history. You can read about it in Pop Culture
+        deep interest in Finance and technology. I&apos;m working towards being
+        a rockstar in the Fin-Tech domain. In my free time I watch documentaries
+        and read history. You can read about it in{' '}
+        <Link href="/pop">
+          <a>Pop Cult</a>
+        </Link>
       </p>
       <p>
         This blog is a collection of what I have learned in terms of technology

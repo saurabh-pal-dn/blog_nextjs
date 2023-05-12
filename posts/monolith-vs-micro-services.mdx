@@ -1,0 +1,49 @@
+---
+title: Monolith v/s Microservices
+description: Dare I say more?
+date: '2023-05-15'
+---
+
+Much of the internet is at arms about the best way to achieve maximum productivity. Software development can only stay away from this for so long. We have observed a new JS framework every week, a new language every month, and a new operation procedure every 6 months. This has left us with pain and regrets while adding little to the productivity of the workers. A constant debate that has stood strong for almost 10 years is `Monolith V/s Microservices`. Ardent supporters for monolith are unwavering but the protestants rally micro-service as a panache. This is my candid take on the subject.
+
+## Why Monolith?
+
+You start a project, creating the bare bones and rudimentary interfaces. The project runs, _barely_. The project evolves and needs a few people to maintain and adapt. The project grows in both, size and complexity. A refactor is evident, dare I say eminent. Now two paths diverge; we can stick to fundamentals and scrutinize the bottlenecks, understand the architectural challenges and undertake a decision based on the workload.
+Split the mammoth of a project into clean modules, adapt to the right abstraction and enforce loose coupling among the modules to tackle the task at hand. It makes it easy for different teams to work independently on modules and each module can evolve without getting in the way of others.
+
+This practice requires patience, skill and intricate domain knowledge. The modules must be loosely coupled, properly protected and follow [SOLID](https://en.wikipedia.org/wiki/SOLID) principles. Build an integrated system that collapses as many unnecessary conceptual models as possible. Eliminates as much needless abstraction as you can swing a hammer at.
+But this takes work, and nobody got time for that! Enter micro-services.
+
+## Micro-services!
+
+We dreamed of a one-stop solution that fulfills all the needs of fast, agile software development while providing blazing-fast productivity. Some gurus in Silicon Valley thought of separating a big service into many smaller ones and then deploying them individually. The idea was simple, any service that needed to scale more than others may do so as required. Each micro-service is running on a server, thus the optimal allocation of resources. A CPU-hungry micro-service can munch as much CPU as its heart desires. The poster child of micro-service, AMAZON, popularised the practice by laying the foundational principles for such an architecture. It should follow:
+
+1. **Single purpose:** service should focus on one single purpose and do it well.
+2. **Loose coupling:** services know little about each other. A change to one service should not require changing the others. Communication between services should happen only through public service interfaces.
+3. **High cohesion:** service encapsulates all related behaviors and data together. If we need to build a new feature, all the changes should be localized to just one single service.
+
+Any new ideology weaponized in the hands of the public leads to deteriorating standards and malpractices. The same was the fate of our beloved principles and organizations took liberties during implementation. Now we have a mess of spaghetti that resembles a distributed monolith that leads to confusion and slow-paced improvement.
+
+There are amazing benefits that can be extracted from a micro-service architecture, and many industry leaders like Netflix, and Amazon, use them to dynamically scale their infrastructure as per demand. We must be wary to not over-engineer the systems and make a mess!
+
+## Why not micro-service?
+
+Think about what we have done. We replaced modules and function calls with micro-services and network calls. Network calls are difficult to handle, and even more difficult to ensure fail-safe mechanisms. That's why in [CAP](https://en.wikipedia.org/wiki/CAP_theorem) theorem, P _(Partition tolerance)_ is always considered an obvious necessity. Every time you extract a collaboration between objects to a collaboration between systems, you're accepting a world of hurt with a myriad of liabilities and failure states. What to do when services are down, how to migrate in concert, and all the pain of running many services in the first place. Recently a [post](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90) by Amazon highlights the issue accurately. Not every task is required to be done by a micro-service. Reasons to stick to monolith are many, a few of them includes:
+
+1. **Simplicity:** Monolithic architecture is generally simpler to develop and maintain compared to microservices architecture, as there is only one application to manage.
+2. **Cost-effectiveness:** Monolithic architecture may be more cost-effective for small-scale applications or for companies that do not have the resources to manage multiple microservices.
+3. **Performance:** Monolithic architecture can offer better performance since all components of the application are running in the same process and can communicate directly with each other.
+4. **Easier testing:** Testing a monolithic application can be easier compared to testing multiple microservices since there is only one codebase to test.
+
+Any use case pertaining to such needs must focus on a [**Majestic monolith**](https://m.signalvnoise.com/the-majestic-monolith/). By majestic monolith, I reiterate that the code must be clean, abstracted simplicity and flexible. If you are going to erect a monolith, you better make sure it stands firm to the highest standards.
+
+## Conclusion
+
+When choosing between monolithic and microservices architectures, it is important to carefully consider the specific needs and requirements of the project. A few factors that may be considered while deliberation:
+
+1. **The complexity of the application:** Monolithic architecture may be suitable for simple applications that do not require a high degree of scalability or flexibility.
+1. **Scalability requirements:** If scalability and erratic demand plague your use, microservices architecture may be the better choice.
+1. **Team size and structure:** Microservices architecture may be a better choice for larger development teams that can manage multiple services simultaneously.
+1. **Development timeline:** Monolithic architecture may be faster to develop initially, but it may become more difficult to manage as the application grows in complexity. Microservices architecture may require more planning and coordination upfront, but it can lead to faster development and deployment in the long run.
+
+Pick your poison! ☠️
