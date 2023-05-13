@@ -1,10 +1,10 @@
 ---
 title: Monolith v/s Microservices
 description: Dare I say more?
-date: '2023-05-15'
+date: '2023-05-13'
 ---
 
-Much of the internet is at arms about the best way to achieve maximum productivity. Software development can only stay away from this for so long. We have observed a new JS framework every week, a new language every month, and a new operation procedure every 6 months. This has left us with pain and regrets while adding little to the productivity of the workers. A constant debate that has stood strong for almost 10 years is `Monolith V/s Microservices`. Ardent supporters for monolith are unwavering but the protestants rally micro-service as a panacea. This is my candid take on the subject.
+Much of the internet is at arms about the best way to achieve maximum productivity. Software development can only stay away from this for so long. We have observed a new JS framework every week, a new language every month, and a new operation procedure every 6 months. This has left us with pain and regrets while adding little to the productivity of the workers. A constant debate that has stood strong for almost 10 years is `Monolith V/s Microservices`. Ardent supporters for monolith are unwavering but the protestants rally microservice as a panacea. This is my candid take on the subject.
 
 ## Why Monolith?
 
@@ -12,23 +12,28 @@ You start a project, creating the bare bones and rudimentary interfaces. The pro
 Split the mammoth of a project into clean modules, adapt to the right abstraction and enforce loose coupling among the modules to tackle the task at hand. It makes it easy for different teams to work independently on modules and each module can evolve without getting in the way of others.
 
 This practice requires patience, skill and intricate domain knowledge. The modules must be loosely coupled, properly protected and follow [SOLID](https://en.wikipedia.org/wiki/SOLID) principles. Build an integrated system that collapses as many unnecessary conceptual models as possible. Eliminates as much needless abstraction as you can swing a hammer at.
-But this takes work, and nobody got time for that! Enter micro-services.
+But this takes work, and nobody got time for that! Enter microservices.
 
-## Micro-services!
+## Microservices!
 
-We dreamed of a one-stop solution that fulfills all the needs of fast, agile software development while providing blazing-fast productivity. Some gurus in Silicon Valley thought of separating a big service into many smaller ones and then deploying them individually. The idea was simple, any service that needed to scale more than others may do so as required. Each micro-service is running on a server, thus the optimal allocation of resources. A CPU-hungry micro-service can munch as much CPU as its heart desires. The poster child of micro-service, AMAZON, popularised the practice by laying the foundational principles for such an architecture. It should follow:
+We dreamed of a one-stop solution that fulfills all the needs of fast, agile software development while providing blazing-fast productivity. Some gurus in Silicon Valley thought of separating a big service into many smaller ones and then deploying them individually. The idea was simple, any service that needed to scale more than others may do so as required. Each microservice is running on a server, thus the optimal allocation of resources. A CPU-hungry microservice can munch as much CPU as its heart desires. The poster child of microservice, AMAZON, popularised the practice by laying the foundational principles for such an architecture. It should follow:
 
 1. **Single purpose:** service should focus on one single purpose and do it well.
 2. **Loose coupling:** services know little about each other. A change to one service should not require changing the others. Communication between services should happen only through public service interfaces.
 3. **High cohesion:** service encapsulates all related behaviors and data together. If we need to build a new feature, all the changes should be localized to just one single service.
 
+![microservices_image_description](/images/monolith-vs-micro-services-image-0.webp)
+
+<br />
+<br />
+
 Any new ideology weaponized in the hands of the public leads to deteriorating standards and malpractices. The same was the fate of our beloved principles and organizations took liberties during implementation. Now we have a mess of spaghetti that resembles a distributed monolith that leads to confusion and slow-paced improvement.
 
-There are amazing benefits that can be extracted from a micro-service architecture, and many industry leaders like Netflix, and Amazon, use them to dynamically scale their infrastructure as per demand. We must be wary to not over-engineer the systems and make a mess!
+There are amazing benefits that can be extracted from a microservice architecture, and many industry leaders like Netflix, and Amazon, use them to dynamically scale their infrastructure as per demand. We must be wary to not over-engineer the systems and make a mess!
 
-## Why not micro-service?
+## Why not Microservices?
 
-Think about what we have done. We replaced modules and function calls with micro-services and network calls. Network calls are difficult to handle, and even more difficult to ensure fail-safe mechanisms. That's why in [CAP](https://en.wikipedia.org/wiki/CAP_theorem) theorem, P _(Partition tolerance)_ is always considered an obvious necessity. Every time you extract a collaboration between objects to a collaboration between systems, you're accepting a world of hurt with a myriad of liabilities and failure states. What to do when services are down, how to migrate in concert, and all the pain of running many services in the first place. Recently a [post](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90) by Amazon highlights the issue accurately. Not every task is required to be done by a micro-service. Reasons to stick to monolith are many, a few of them includes:
+Think about what we have done. We replaced modules and function calls with microservices and network calls. Network calls are difficult to handle, and even more difficult to ensure fail-safe mechanisms. That's why in [CAP](https://en.wikipedia.org/wiki/CAP_theorem) theorem, P _(Partition tolerance)_ is always considered an obvious necessity. Every time you extract a collaboration between objects to a collaboration between systems, you're accepting a world of hurt with a myriad of liabilities and failure states. What to do when services are down, how to migrate in concert, and all the pain of running many services in the first place. Recently a [post](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90) by Amazon highlights the issue accurately. Not every task is required to be done by a microservice. Reasons to stick to monolith are many, a few of them includes:
 
 1. **Simplicity:** Monolithic architecture is generally simpler to develop and maintain compared to microservices architecture, as there is only one application to manage.
 2. **Cost-effectiveness:** Monolithic architecture may be more cost-effective for small-scale applications or for companies that do not have the resources to manage multiple microservices.
