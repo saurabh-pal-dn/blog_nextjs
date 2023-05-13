@@ -26,7 +26,7 @@ Based on the implementation, we can have the client make the RPC synchronously o
 
 ## gRPC
 
-We will take a practical implementation of gRPC which has gained huge popularity lately: (gRPC)[https://grpc.io/].
+We will take a practical implementation of gRPC which has gained huge popularity lately: [gRPC](https://grpc.io/).
 If we have multiple backend systems that need to communicate with each other we need a robust microservice architecture. This means a lot of API calls and a lot of error handling and interface design decisions. Implementation, maintenance, and upgradation of these microservices while ensuring constant communication can get messy real quick. We would need to handle all the different client libraries, ascertain their compatibility and ensure security. That can be a lot of code and who wants to code! How about we make our life a little easier?
 
 We need to define the protocol buffer, specify the procedures (read `functions`) we want to expose to the outside world and return types. The same tooling is used to generate the client and server code from the proto file.
