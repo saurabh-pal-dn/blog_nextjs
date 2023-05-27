@@ -1,0 +1,37 @@
+---
+title: Understanding UPI (Part 2)
+description: A quick introduction to the payment cycle and settlement
+date: '2023-05-28'
+---
+
+Haven't read part 1? Check it out [here](/posts/upi-part-1)
+
+## Payment Cycle
+
+To understand how a transaction flows through the UPI infrastructure, let's take an example of a direct payment and trace it from the beginning through the end. Saurabh is sending money to Gaurav for ~~booze~~ books.
+
+![](/images/upi/9.jpg)
+
+<br></br>
+
+On the PhonePe app, Saurabh inputs Gauravs's UPI ID and the amount. PhonePe App encrypts Saurabh's UPI PIN and generates a new device fingerprint. The app requests the PhonePe servers to compare the freshly produced fingerprint with the fingerprint in the database, and if the verification is successful, the request is forwarded to NPCI via their acquiring bank, ICICI.
+
+NPCI needs to do 2 things:
+
+1. Verify that Gaurav's UPI Id entered by Saurabh is correct and links to a bank account
+2. Gaurav's bank account details
+
+NPCI consults the mapping of handles and their respective providers. It finds that **@abc** is handled by Axis bank. NPCI asks Axis Bank for the details and gets the Bank A/c and IFSC for **gaurav@abc**. NPCI passes the authorization to HDFC Bank to verify Saurabh's PIN and debit the account. HDFC bank debits the account and sends back an acknowledgment to NPCI. NPCI asks SBI to credit the money in Gaurav's account. SBI also sends back an acknowledgment to NPCI.
+
+NPCI notifies that transaction was successful to PhonePe (via ICICI bank) and to GooglePay (via Axis Bank).
+
+## Settlement
+
+All the member banks of UPI have an account called General Ledger (GL) with RBI. At EOD all the transactions across the banks are netted and settled from the GL against each bank by RBI. Both HDFC and SBI send their daily transaction report to RBI, RBI vets the transactions, and if no discrepancy is found the net payable amount is transferred from one GL account to another.
+
+![](/images/upi/10.jpg)
+
+## Wrap up
+
+That's a wrap folks!
+Next, we'll look into cross-border payments through UPI.

@@ -1,0 +1,100 @@
+---
+title: Understanding UPI (Part 1)
+description: A quick introduction to the UPI and account creation
+date: '2023-05-27'
+---
+
+In this article, we will learn about India's Unified Payments Interface. A young payment scheme that has been accounting for 60-65% of digital payments across India.
+
+## Background
+
+India has seen numerous attempts to become a cashless society. The earlier alternatives were difficult to use and primarily reliant on the banks' Netbanking services. The encounter was unusual. All these factors made it mostly adopted by tech-savvy people. India, a diverse nation, required a system with a wide variety of payment apps that are tailored for various demographics.
+
+![](/images/upi/0.webp)
+
+The primary objective of UPI was to build an open payment system that is mobile-first, fast, and interoperable across different banks.
+
+We should delegate the task of creating user-friendly user interfaces for financial transactions to Internet businesses while leaving banks to do what they do best—manage money.
+
+## What is UPI?
+
+UPI is a payment markup language and a standard for interoperable payments in India. It is formally called _Unified Payments Interface_.
+
+![](/images/upi/1.png)
+
+UPI established the idea of human-friendly unique IDs called UPI Virtual Payment Addresses (or VPAs) to make the process of exchanging money easier. The UPI VPAs are similar to email addresses. They are interoperable. A Gmail user can send an email to a yahoo user.
+
+In short, a UPI Virtual Payment Address serves as the addressing layer for a bank account.
+
+## The Entities
+
+### Banks
+
+UPI works directly with the bank accounts.
+
+The banks that hold your money are also called Issuing Banks. They maintain a UPI-specific database for storing user UPI information.
+
+```bash
+//Credit Operation
+UPDATE user SET balance = balance + 300 WHERE accountId = `123...456`;
+//Dedit Operation
+UPDATE user SET balance = balance - 300 WHERE accountId = `123...456`;
+```
+
+![](/images/upi/3.png)
+
+<br></br>
+
+### Payment Apps
+
+Payment Apps are consumer-focused goods that allow users to link their bank accounts and conduct real-world business. The popular apps are BHIM, PhonePe, Google Pay, and others.
+
+The Reserve Bank of India (RBI) regulates who can create UPI handles. Currently, only the member banks of the UPI ecosystem are allowed to do so.
+
+_Acquiring Banks_ serves as both the gateway to the UPI ecosystem and how payment apps can create and manage UPI handles for their consumers.
+
+![](/images/upi/4.jpg)
+
+<br></br>
+
+### NPCI
+
+National Payments Corporation of India (NPCI) is a non-profit set up by the Government of India to facilitate digital payments.
+
+Connecting each payment app with each bank would be a crude method to create an interoperable network. It's a rather ineffective method of going about it, practically it is infeasible. To stop the ensuing chaos, we need a third party to regulate and standardize the interfaces.
+
+NPCI is the trusted switch and standardization organization. They make sure that data flow between banks and payment apps is routed to the correct and verified destinations. The payment apps and banks talk just to NPCI and can be assured by NPCI that they are interacting with who they intend to.
+
+The NPCI hosts non-financial meta APIs like _ListAccountProviders (which returns all bank information), validateAddress (which aids in VPA validation), requestOtp (for 2FA), and others_.
+
+![](/images/upi/5.png)
+
+<br></br>
+
+## Authentication
+
+UPI uses 2-factor authentication.
+
+The possession factor is the device's fingerprint. The knowledge factor is the UPI PIN.
+
+## Registration
+
+Based on personal taste, the customer installs one of the payment apps. After installing the app, the user's phone number will be validated using an OTP. The payment applications produce the device fingerprint and store it in their databases for future verification. The user will be prompted to generate a one-of-a-kind UPI ID. In the future, the unique UPI ID will serve as the user's payment address for sending and receiving payments. The flow is as follows:
+
+<br></br>
+
+![](/images/upi/6.jpg)
+
+Every bank has its own API interface for the interaction between payment apps and acquiring banks. The payment apps also store a mapping between phone numbers and the UPI IDs.
+
+<br></br>
+
+![](/images/upi/7.jpg)
+
+Next, we link the newly created UPI ID to a bank account. When the user picks his bank account, the app sends a request to NPCI called _setCredentials_. Verification often entails the user authenticating with the issuing bank by submitting the card data and the PIN. The user can set the UPI pin if he or she is authorized. The Issuing Bank creates a [salted hash](https://www.geeksforgeeks.org/what-is-salted-password-hashing/) of the PIN and stores the hash in the database.
+
+The Issuing Bank verifies the account's validity and returns the account details. When the Acquiring Banks get the account information, they update their database to link the newly formed UPI to the received bank account information.
+
+![](/images/upi/8.png)
+
+[Go to part 2](/posts/upi-part-2)
