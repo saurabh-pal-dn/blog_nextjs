@@ -1,0 +1,54 @@
+---
+title: Understanding UPI (Part 3)
+description: A look into the cross-border payment design
+date: '2023-05-29'
+---
+
+Hey!, go check out [Part 1](/posts/upi-part-1) and [Part 2](/posts/upi-part-2) before proceeding.
+
+## Cross-border payments
+
+UPI has proved to be a robust and scalable solution that has catered to domestic needs with utmost satisfaction. India has long considered the linkage of UPI with other countries to extend the reach of its digital economy. It comes as no surprise that Singapore, which is a heavy trade partner of India, has linked its payment interface **PayNow** with UPI to support cross-border payments. We'll do an architectural overview of the system and how different entities interact with each other in tandem.
+
+## Architecture
+
+Similar to India NPCI, we have a Singaporean counterpart called **PayNow BCS** that functions as the standardization body. NPCI and PayNow interact with each other based on the _ISO20022_ standard that is widely accepted for international transactions.
+
+There are settlement banks linked with PayNow and NPCI. For PayNow the settlement bank is _HDFC_ and for NPCI it is _SBI_.
+
+The overall architecture looks like this.
+
+![](/images/upi/11.jpg)
+
+<br></br>
+
+The settlement banks have a pre-funded account with one another that is used for settlement at the end of the day.
+Hence, HDFC has **VOSTRO** account in SBI and they have **NOSTRO** account with HDFC.
+
+![](/images/upi/12.jpg)
+
+## Payment Cycle
+
+Let's consider an example of Foreign inward remittance, i.e. sending money from Singapore to India.
+
+The procedure followed is mostly similar to the transaction procedure in domestic UPI, just with the added entity PayNow. UPI will act as the intermediary between PayNow and Indian banks; it will provide the necessary information like bank A/c, IFSC, and VPA verification to authenticate the transaction.
+
+The user initiates a transaction from his PayNow sanctioned app and the payment reaches **PayNow BCS**. It checks the information and forwards it in _ISO20022_ format to NPCI. The NCPI does some prechecks like satisfying sufficient balance in the VOSTRO account, etc., and then processes the transaction. NPCI will send the notification to the respective Indian bank to credit the amount and send an acknowledgment to PayNow saying the transaction has been successful on its end. PayNow will receive the acknowledgment and notify the Singaporean bank.
+
+## Settlement
+
+For simplicity, let's assume the settlement happens daily at EOD. Both the settlement banks create a statement of all the daily transactions, the transaction amount is netted and the result is paid from the pre-funded account. Then the settlement bank notifies their respective central authorities (PayNow BSC and NPCI), and the central authority disburses the money to the different banks from the settlement banks GL with RBI.
+
+## Exchange Rate
+
+One caveat is that the exchange rate keeps on fluctuating and they could be different from when the transaction happened and when the settlement takes place. To prevent any arbitrage, the rolling average of the previous 5 days is fixed as the exchange rate for that day and that exchange rate is used for all the transactions and the settlement.
+
+We can increase the fidelity of the transactions, we can increase the frequency of settlement to happen every few hours and the rolling average can be applied to all the transactions happening in those hours.
+
+The banks need the incentive to support this system, therefore the cross-border payments are charged from the user's account.
+The 2 methods of profiting are:
+
+1. **FX markup**: The banks mark up the exchange rate a bit higher and keep the cut as profit.
+2. **Processing fee**: banks charge a % processing fee
+
+We have gone through a simplified overview of the cross-border payments that India has recently initiated with Singapore. It's a simple system that is built on the support of interoperability and flexibility of both the payment interface. We have glossed over the technical details like failure scenarios, edge cases, nonavailability issues, etc. but they are a problem for some other article 😛.
