@@ -10,9 +10,9 @@ const Navigation = (): JSX.Element => {
       <Link href="/blog">
         <a className="text-gray-900 dark:text-white px-6 py-4">Tech</a>
       </Link>
-      <Link href="/dashboard">
+      {/* <Link href="/dashboard">
         <a className="text-gray-900 dark:text-white px-6 py-4">Dashboard</a>
-      </Link>
+      </Link> */}
       <Link href="/about">
         <a className="text-gray-900 dark:text-white px-6 py-4">About</a>
       </Link>

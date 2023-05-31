@@ -13,10 +13,10 @@ export const About = (): JSX.Element => {
         <strong>About</strong>
       </h1>
       <p>
-        Hey! I&apos;m a software developer working in RBI as a manager. I have
+        Hey! I&apos;m a software developer working in Dept. of IT, RBI. I have
         deep interest in Finance and technology. I&apos;m working towards being
-        a rockstar in the Fin-Tech domain. In my free time I watch documentaries
-        and read history. You can read about it in{' '}
+        a rock-star 🎸 in the Fin-Tech domain. In my free time I watch
+        documentaries, movies and read history. You can read about it in{' '}
         <Link href="/pop">
           <a>Pop Cult</a>
         </Link>

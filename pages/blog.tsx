@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { getAllPosts } from '../lib/api';
 
-export const Blog = ({ posts }: IndexProps): JSX.Element => {
+export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
   return (
     <Layout
       customMeta={{
@@ -16,7 +16,7 @@ export const Blog = ({ posts }: IndexProps): JSX.Element => {
         <strong>Blog</strong>
       </h1>
 
-      {posts.map((post) => (
+      {techPosts.map((post) => (
         <article key={post.slug} className="mt-12">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
             {format(parseISO(post.date), 'MMMM dd, yyyy')}
@@ -41,9 +41,9 @@ export const Blog = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps = () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  const techPosts = getAllPosts(['date', 'description', 'slug', 'title']);
   return {
-    props: { posts },
+    props: { techPosts },
   };
 };
 

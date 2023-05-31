@@ -26,7 +26,7 @@ Based on the implementation, we can have the client make the RPC synchronously o
 
 ## gRPC
 
-We will take a practical implementation of gRPC which has gained huge popularity lately: [gRPC](https://grpc.io/).
+We will take a practical implementation of RPC which has gained huge popularity lately: [gRPC](https://grpc.io/).
 If we have multiple backend systems that need to communicate with each other we need a robust microservice architecture. This means a lot of API calls and a lot of error handling and interface design decisions. Implementation, maintenance, and upgradation of these microservices while ensuring constant communication can get messy real quick. We would need to handle all the different client libraries, ascertain their compatibility and ensure security. That can be a lot of code and who wants to code! How about we make our life a little easier?
 
 We need to define the protocol buffer, specify the procedures (read `functions`) we want to expose to the outside world and return types. The same tooling is used to generate the client and server code from the proto file.
@@ -57,4 +57,4 @@ All these factors mean that there's no point in trying to make the remote servic
 
 ## Future
 
-RPC isn't going anywhere. The new generation of RPC frameworks are more explicit about the fact that a remote request is different from a local call. Some even provide _service discovery_ - allowing a client to find out which IP address it can find a particular service. There is still no agreement on how API versioning should work.
+RPC isn't going anywhere. The new generation of RPC frameworks is more explicit about the fact that a remote request is different from a local call. Some even provide _service discovery_ - allowing a client to find out which IP address it can find a particular service. There is still no agreement on how API versioning should work.

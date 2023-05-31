@@ -5,7 +5,7 @@ import { getAllPopPosts } from '../lib/api';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 
-export const PopCulture = ({ posts }: IndexProps): JSX.Element => {
+export const PopCulture = ({ popPosts }: IndexProps): JSX.Element => {
   return (
     <Layout
       customMeta={{
@@ -16,7 +16,7 @@ export const PopCulture = ({ posts }: IndexProps): JSX.Element => {
         <strong>Pop Culture</strong>
       </h1>
 
-      {posts.map((post) => (
+      {popPosts.map((post) => (
         <article key={post.slug} className="mt-12">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
             {format(parseISO(post.date), 'MMMM dd, yyyy')}
@@ -41,9 +41,9 @@ export const PopCulture = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps = () => {
-  const posts = getAllPopPosts(['date', 'description', 'slug', 'title']);
+  const popPosts = getAllPopPosts(['date', 'description', 'slug', 'title']);
   return {
-    props: { posts },
+    props: { popPosts },
   };
 };
 

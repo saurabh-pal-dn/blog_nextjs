@@ -8,10 +8,11 @@ import { PostType } from '../types/post';
 import Typewriter from 'typewriter-effect';
 
 export type IndexProps = {
-  posts: PostType[];
+  techPosts: PostType[];
+  popPosts: PostType[];
 };
 
-export const Index = ({ posts }: IndexProps): JSX.Element => {
+export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
   return (
     <Layout>
       <h1>
@@ -57,7 +58,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 
       <p>I write about technology, esoteric knowledge and pop culture </p>
 
-      {posts.map((post: PostType) => (
+      {techPosts.map((post: PostType) => (
         <article key={post.slug} className="mt-12">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
             {format(parseISO(post.date), 'MMMM dd, yyyy')}
@@ -77,16 +78,36 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
           </p>
         </article>
       ))}
+
+      {popPosts.map((post: PostType) => (
+        <article key={post.slug} className="mt-12">
+          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+            {format(parseISO(post.date), 'MMMM dd, yyyy')}
+          </p>
+          <h1 className="mb-2 text-xl">
+            <Link as={`/posts/pop/${post.slug}`} href={`/posts/pop/[slug]`}>
+              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
+                {post.title}
+              </a>
+            </Link>
+          </h1>
+          <p className="mb-3">{post.description}</p>
+          <p>
+            <Link as={`/posts/pop/${post.slug}`} href={`/posts/pop/[slug]`}>
+              <a>Read More</a>
+            </Link>
+          </p>
+        </article>
+      ))}
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  const techPosts = getAllPosts(['date', 'description', 'slug', 'title']);
   const popPosts = getAllPopPosts(['date', 'description', 'slug', 'title']);
-  const allPosts = posts.concat(popPosts);
   return {
-    props: { posts: allPosts },
+    props: { techPosts, popPosts },
   };
 };
 
