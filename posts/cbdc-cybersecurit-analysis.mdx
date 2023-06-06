@@ -1,0 +1,112 @@
+---
+title: CBDC cybersecurity risks, analysis, and mitigation
+description: A robust and secure CBDC implementation
+date: '2023-06-07'
+---
+
+## Introduction
+
+A central bank digital currency (CBDC) is a digital or electronic version of a fiat currency, like the US dollar or the euro. It is issued by a central bank and is backed by the full faith and credit of the issuing government. Central banks around the world are exploring the potential of CBDCs and India is at the forefront of this technological shift with its e-Rupee. While the technology is in its nascent stage, the risks and concerns pertaining to cybersecurity, implementation, adoption and expansion assume paramount importance.
+
+RBI must act proactively and bring forth cautionary and preventive policies that ensure a robust and cemented foundation. This article intends to ensue on the journey of systematically categorizing the different technological challenges that will be faced, the impact of CBDC on the national economy and the technical implementation of a typical CBDC.
+
+India has unique objectives for the introduction of both the wholesale and retail CBDCs which entails the promotion of digitization, promotion of financial inclusion and financial literacy, minimization of printing notes cost, faster currency management and currency operations, and faster cross-border settlements. A fragile and insecure infrastructure will not only tarnish the image of the central financial institutions of the country but will also dissuade people away from the use of CBDC. In the next section, we will focus on the various risks that plague the technical ecosystem.
+
+## Risk and concerns
+
+We will be discussing key cybersecurity concerns. We can categorize the concerns into 2 regions:
+
+1. **Identity**: identity theft is mostly related to Account-based CBDC (Wholesale CBDC)
+
+1. **Token-based**: Verification and validation of each payment, preventing double-spend and authentical of token related to Token based CBDC (Retail CBDC)
+
+Let's elaborate further on them:
+
+1. Cyber threats emerge from theft and loss of credentials, misuse of user privileges, loss of system integrity and counterfeiting of CBDC.
+1. Unsecure DevOps practices introduce vulnerabilities in the system. It presents a compelling use case for the adoption of best practices such as threat modelling, continuous testing and risk assessment.
+1. API security that emphasizes authentication, authorization, encryption, rate limiting, input validation, error handling, failsafe mechanism, and concurrency controls is essential to protect against cyber security and ensure the integrity of the system.
+1. Continuous monitoring and assessment will help.
+1. Encryption (we will cover it in detail in another subheading)
+1. The use of open source may increase the risk of vulnerabilities being introduced due to 3rd party dependencies and outdated libraries. OSS is an easy target for cybercriminals due to its easier public availability.
+
+The above-mentioned threats can be minimized by using the correct technologies and adopting the right policies. In fact, DLT (Distributed Ledger Technology) and the blockchain have inherent systems and controls to address the existing and emerging cybersecurity issues. We will discuss them on an abstract level later in the article.
+
+## Requirements for Robust and Secure Infrastructure
+
+A crucial aspect of securing a CBDC platform is the validation, authorization and authentication of CBDC transactions using digital identities that are managed by tamper-resistant H/W and S/W.
+The system comprises the following solutions:
+
+1. Cryptographic libraries
+1. Databases
+1. Application servers
+1. Firewall and Security measures: A few technologies may include IAM & ZTNA, DAM, NOC, IPS, HoneyPot and HSM
+1. Digital identity management
+1. Logical Assimilation
+1. Communication protocols: We may use the INFINET for internal communications and follow the ISO20022 for communication amongst the participating financial institutions.
+
+To ascertain the authenticity of the token we can borrow some standard measures that will include:
+
+- Consensus mechanism
+  - We can utilize Proof of Work or Proof of Sack to ensure that transactions are verified and validated by multiple clients in the DLT network. These mechanisms require a certain amount of computation work to discourage cyber attackers from manipulating the system.
+- Timestamping:
+  - Each transaction is assigned a unique timestamp (UNIX) indicating the time it was executed and it can be used to verify the chronological order of the transactions
+- Digital signatures:
+  - These are cryptographic strings that are used to verify the authenticity of a token, each transaction is signed by the sender and the recipient verifies the transaction. This ensures the transaction is genuine.
+- Real-time Monitoring:
+  - Advanced AI & ML powered analytics can be implemented to undertake fraud detection, trigger alerts and malicious pattern recognition.
+
+Prevention of identity theft will form a strong pillar in stabilizing and
+expansion of CBDCs. It must be implemented to instil confidence in the digital
+ecosystem and prevent wrongful transactions and theft.
+The following methdos must be instrumented to the solution:
+
+1. Multi-factor Authentication
+1. Encryption
+1. User education
+1. Access controls
+1. Security audits
+
+## Hyperledger Fabrics
+
+Hyperledger is an open-source project hosted by The Linux Foundation that provides a framework for developing blockchains and related technologies. It is a global collaboration, with over 200 member organizations, including leaders in finance, banking, the Internet of Things, supply chains, manufacturing, and technology. Hyperledger Fabric is a modular blockchain framework that has been used by financial institutions to build scalable, flexible and secure blockchains.
+
+## A simple walkthrough
+
+We will follow the steps undertaken by one transaction to understand the necessary steps.
+
+1. Endorsement: The client app will submit a CBDC transaction proposal to the peer nodes, which in turn will execute the code to validate the transaction. They will endorse the transaction by digitally signing (ds) it with their private key.
+1. Ordering: The transaction will be sent to Ordered nodes, which compact the transactions and create a block. They use a consensus algorithm to ensure the transactions are processed in a consistent order across the network.
+1. Validation: The peer nodes will validate the transactions by checking the digital signatures of the endorsing Peer nodes
+1. Commit: Once the transactions are validated, they will be added to the ledger as blocks the entries will be replicated across the peer nodes in the DLT network
+1. Storing: All the CBDC transactions will be hashed, and the hashes of CBDC transaction will be used to create the blocks. Merkel tree is a widespread data structure used to encode blockchain data more efficiently and securely.
+
+## HSM + Ledger-based encryption
+
+Hardware Security Module is a physical device that safeguards and manages cryptographic keys. Thus, all the cryptographic operations such as signing, encryption, decryption must be performed by HSM in a secure, tamper-proof environment. All the cryptographic operations will be performed by Peer nodes themselves and the key management will be done by the Membership service provider (MSP).
+
+The MSP software service should be used to check that the Peer nodes are allowed to endorse the transactions. Therefore, the MSP works as a mechanism that allows the digital entities to be trusted and recognised by the rest of the network. By deploying HSM on the Peer nodes, the private keys that are used to sign the transactions will be kept secure and distributed, neutralizing SPOF attacks.
+
+## Abstract HLD
+
+![hld](/images/cbdc-cybersecurit-analysis-image-0.jpg)
+
+A CBDC deployment using Hyperledger Fabric will involve the following entities:
+
+1. Central Bank
+1. Participating Banks
+1. Financial Intermediaries
+
+_Peer Nodes_: Validating and committing transactions to the ledger
+_Membership Service Provider (MSP)_: creating, storing and distributing the cryptographic public keys
+_Orderer Nodes_: Ordering and consistently committing the CBDC transactions across the DLT network
+_Certificating Authority (CA)_: Issuing and managing digital certificates to all the entities. The central bank may issue guidelines in this regard.
+
+This CBDC deployment will allow the Central Bank to have oversight and control over the DLT network while providing participating banks and financial intermediaries with the autonomy to manage and validate CBDC transactions on their respective Peer and MSP nodes. This Nature of implementation may be categorized as a **Closed User Group network**.
+
+I also recommend regular security audits, intrusion detection and prevention systems to minimize risk.
+
+## Conclusion
+
+CBCD is a natural progression of the payment systems. Potentially disruptive to usher in a cashless society, it can act as a catalyst for the promotion of financial inclusion and literacy across the country. Overall, CBDCs have the potential to bring about several positive changes to the economy. However, it is important to note that there are also some risks associated with CBDCs, such as the potential for cyber attacks and the loss of privacy.
+
+All the stakeholders must take necessary precautions continuously and consistently under perpetual surveillance. User awareness creation and adoption of best practices like cyber security are equally important. Simultaneously, the Central Bank, the banks and other financial institutions also have to ensure security and integrity through the use of relevant technology and security-conscious human resources.
