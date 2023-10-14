@@ -4,6 +4,7 @@ import { IndexProps } from '.';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { getAllPosts } from '../lib/api';
+import ViewCounter from '../components/ViewCounter';
 
 export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
   return (
@@ -18,9 +19,14 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
 
       {techPosts.map((post) => (
         <article key={post.slug} className="mt-12">
-          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {format(parseISO(post.date), 'MMMM dd, yyyy')}
-          </p>
+          <div className="flow-root">
+            <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
+              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+            </p>
+            <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
+              <ViewCounter slug={post.slug} />
+            </p>
+          </div>
           <h1 className="mb-2 text-xl">
             <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
               <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">

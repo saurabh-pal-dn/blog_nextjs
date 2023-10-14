@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import { getAllPopPosts, getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
 import Typewriter from 'typewriter-effect';
+import ViewCounter from '../components/ViewCounter';
 
 export type IndexProps = {
   techPosts: PostType[];
@@ -60,9 +61,14 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
 
       {techPosts.map((post: PostType) => (
         <article key={post.slug} className="mt-12">
-          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {format(parseISO(post.date), 'MMMM dd, yyyy')}
-          </p>
+          <div className="flow-root">
+            <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
+              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+            </p>
+            <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
+              <ViewCounter slug={post.slug} />
+            </p>
+          </div>
           <h1 className="mb-2 text-xl">
             <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
               <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
@@ -81,9 +87,14 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
 
       {popPosts.map((post: PostType) => (
         <article key={post.slug} className="mt-12">
-          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {format(parseISO(post.date), 'MMMM dd, yyyy')}
-          </p>
+          <div className="flow-root">
+            <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
+              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+            </p>
+            <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
+              <ViewCounter slug={post.slug} />
+            </p>
+          </div>
           <h1 className="mb-2 text-xl">
             <Link as={`/posts/pop/${post.slug}`} href={`/posts/pop/[slug]`}>
               <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
@@ -97,6 +108,9 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
               <a>Read More</a>
             </Link>
           </p>
+          {/* <p>
+            <ViewCounter slug={post.slug} />
+          </p> */}
         </article>
       ))}
     </Layout>
