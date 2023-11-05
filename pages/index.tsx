@@ -58,33 +58,6 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
       </h1>
 
       <p>I write about technology, esoteric knowledge and pop culture </p>
-
-      {techPosts.map((post: PostType) => (
-        <article key={post.slug} className="mt-12">
-          <div className="flow-root">
-            <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
-            </p>
-            <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
-              <ViewCounter slug={post.slug} />
-            </p>
-          </div>
-          <h1 className="mb-2 text-xl">
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
-                {post.title}
-              </a>
-            </Link>
-          </h1>
-          <p className="mb-3">{post.description}</p>
-          <p>
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a>Read More</a>
-            </Link>
-          </p>
-        </article>
-      ))}
-
       {popPosts.map((post: PostType) => (
         <article key={post.slug} className="mt-12">
           <div className="flow-root">
@@ -108,9 +81,32 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
               <a>Read More</a>
             </Link>
           </p>
-          {/* <p>
-            <ViewCounter slug={post.slug} />
-          </p> */}
+        </article>
+      ))}
+      
+      {techPosts.map((post: PostType) => (
+        <article key={post.slug} className="mt-12">
+          <div className="flow-root">
+            <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
+              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+            </p>
+            <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
+              <ViewCounter slug={post.slug} />
+            </p>
+          </div>
+          <h1 className="mb-2 text-xl">
+            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
+              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
+                {post.title}
+              </a>
+            </Link>
+          </h1>
+          <p className="mb-3">{post.description}</p>
+          <p>
+            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
+              <a>Read More</a>
+            </Link>
+          </p>
         </article>
       ))}
     </Layout>
