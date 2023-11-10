@@ -49,7 +49,7 @@ function getPostSlugs(): string[] {
 
 function filterPopPostSlugs(popPostSlugs: string[]): string[] {
     return popPostSlugs.filter((popPostSlug: string)=>{
-      return POP_POSTS_NOT_TO_DISPLAY_ON_PAGE.includes(popPostSlug.split('/').pop())
+      return !POP_POSTS_NOT_TO_DISPLAY_ON_PAGE.includes(popPostSlug.split('/').pop())
     })
 }
 
