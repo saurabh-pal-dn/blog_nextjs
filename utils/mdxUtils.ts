@@ -6,6 +6,8 @@ export const POSTS_PATH = path.join(process.cwd(), 'posts');
 
 export const POP_POSTS_PATH = path.join(process.cwd(), 'posts', 'pop');
 
+export const POP_POSTS_NOT_TO_DISPLAY_ON_PAGE:string[] =['mumbai-a-year-review-public-infra.mdx']
+
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const postFilePaths = fs
   .readdirSync(POSTS_PATH)

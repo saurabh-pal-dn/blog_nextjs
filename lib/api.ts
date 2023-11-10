@@ -1,7 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
-import { POSTS_PATH, POP_POSTS_PATH } from '../utils/mdxUtils';
+import { POSTS_PATH, POP_POSTS_PATH, POP_POSTS_NOT_TO_DISPLAY_ON_PAGE } from '../utils/mdxUtils';
 
 type PostItems = {
   [key: string]: string;
@@ -47,8 +47,16 @@ function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
+function filterPopPostSlugs(popPostSlugs: string[]): string[] {
+    return popPostSlugs.filter((popPostSlug: string)=>{
+      return POP_POSTS_NOT_TO_DISPLAY_ON_PAGE.includes(popPostSlug.split('/').pop())
+    })
+}
+
+
 function getPopPostSlugs(): string[] {
-  return fs.readdirSync(POP_POSTS_PATH);
+  const popPostSlugs = fs.readdirSync(POP_POSTS_PATH);
+  return filterPopPostSlugs(popPostSlugs);
 }
 
 function getPostBySlug(slug: string, fields: string[] = []): PostItems {
