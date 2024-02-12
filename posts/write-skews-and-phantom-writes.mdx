@@ -1,0 +1,56 @@
+---
+title: Write Skews and Phantom writes
+description: What do databases do under the hood to make scalable architecture possible and handle race conditions
+date: '2024-01-18'
+---
+
+## Introduction
+
+In my past startup, we had a pretty convoluted user journey where the user object was mutated multiple times, sometimes multiple times concurrently (I'm looking at you front-end guys:-/). Sometimes while working on a large project that has a lot of data manipulation we are often baffled by a data object that shouldn't be possible or a thing that must not have happened given the state of the object. The backend team donned their *Sherlock hats* and spent numerous hours working out how the object ended up in this abominable state; and why the particular process was triggered given the code doesn't allow it. But as well all know, code is always right, leading us to read the database docs to understand how what happens under the hood and then modify the code accordingly. This post will explain 2 simple race conditions that can happen and we'll try to see how to fix them as well (or how the DB already does it for us). But first some definitions.
+
+
+## Serialized Isolation: 
+Serialized isolation is regarded as the strongest isolation level. It guarantees the result is agnostic to the concurrency nature of the transactions i.e., it would give the same output even if the transactions are executed parallelly or serially. How is it achieved? Well, these pesky details are abstracted by the DB for us, yet sometimes it's good to look under the hood and understand how these details are implemented to gain insights and deepen one's understanding. There are numerous ways in which you can achieve serialized isolation, they are ranked in order of their hit to performance.
+
+### 1. Actualized Serialization: 
+
+The simplest way to avoid race conditions is to remove concurrency entirely. The transactions are executed one at a time, in a serialized fashion, on a single thread. Only recently the computers gained the capability to store enough data and execute transactions in a serialized manner at a respectable performance. If you want to execute a long list of executions, like booking a train ticket, you have to do a few things serially. To execute these transactions in an atomic fashion, we can encapsulate the transactions in stored procedures. A stored procedure is an entire transaction code, consisting of multiple individual transactions, packed into one that is executed atomically. 
+
+As you may have guessed, this is wasteful of your CPU power. A slight improvement can be to partition your data such that a transaction needs to run only on the data on a single partition. Then multiple partitions can run parallelly, running its transaction processing thread independent from another. 
+
+### 2. 2PL 
+
+We have already talked about 2 phased locking in an initial post. You may want to get a look. We may iterate again that performance under 2PL is significantly worse than weak isolation as by design if two concurrent transactions raise a race condition, one has to wait for the other to commit. It may also be called a pessimistic concurrency control mechanism. 
+
+### 3. Serialized Snapshot Isolation 
+
+It is an optimistic concurrency control that works on the simple principle of: *“Don't lock your house against thieves, if a theft happens call the police”*. This seems like bad advice if you live in Bihar, yet this is an excellent efficiency hack for someone living in Shani Shingnapur. It can be considered as a unicorn, which is to say, it has the best characteristics with only minimal penalty on performance. If there is enough space capacity and contention between transactions is low, it has great performance. On the other hand, if the contention is high the system may be needed to retry or revert transactions, and a system already working at capacity must bear the additional overhead and make the performance worse. 
+
+Post our basic understating let's dive into a few technical oddities that happen often in large-scale global systems. The first of them is **Write Skews**.  
+
+  
+
+## Write Skews 
+
+Write skews is a type of race condition that happens because of altering two different objects, due to some outdated condition. 
+
+Let's take an example to understand it. There is an office party and only one member at a time can have a drink otherwise the gathering may become rowdy. Nobody wants to be in such a boring party, but hey corporate policies are to be followed. Alice and Bod both simultaneously make an order and the DB checks as per the diagram flow below. 
+
+![](/images/write-skews-and-phantom-writes-image-0.svg)
+
+
+Now both have a drink and are having a drinking competition, and corporate is very unhappy. But why did this happen? When two transactions read the same objects, and then update those objects. This is a generalized case and in special cases when different transactions update the same objects, you get either a dirty write or a lost update. 
+
+It is not easy to prevent this as well. Atomic single-object implementation won't help as multiple objects are updated. Also, automatic detection for lost updates is not possible and automatic prevention of write skews requires true serialization. 
+
+There are a few ways to prevent a write skew: 
+
+1. Explicitly locking the affected rows that the transaction depends on. 
+
+2. Serialized snapshot isolation 
+
+  
+
+## Phantom writes 
+
+Another oddity emerges that is a corollary of write skew. In the case above, the update transaction was dependent on the condition being fulfilled which was dependent on the rows (object being in one of them). Hence the result of one of the conditions is dependent on the action that may be performed on the object. But let's take another example: As service allows a user to pick a unique username. We create a transaction to check if the username is present, if not then assign the username to a user. If two transactions are executed simultaneously, both users may get the same username. This is different from the above example as the conditional statement relies on the absence of rows matching the condition and the write adds that matching conditions. This effect, where a write in one transaction changes the result of a search query in another transaction is called a phantom. The issue with phantoms is there is no object to which we can attach a lock to prevent the race condition from happening. 
