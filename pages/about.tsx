@@ -18,7 +18,7 @@ export const About = (): JSX.Element => {
         a rock-star 🎸 in the Fin-Tech domain. In my free time I watch
         documentaries, movies and read history. You can read about it in{' '}
         <Link href="/pop">
-          <a>Pop Cult</a>
+          Pop Cult
         </Link>
       </p>
       <p>

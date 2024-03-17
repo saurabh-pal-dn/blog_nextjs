@@ -4,20 +4,20 @@ import React from 'react';
 const Navigation = (): JSX.Element => {
   return (
     <nav>
-      <Link href="/">
-        <a className="text-gray-900 dark:text-white pr-6 py-4">Home</a>
+      <Link href="/" className="text-gray-900 dark:text-white pr-6 py-4">
+        Home
       </Link>
-      <Link href="/blog">
-        <a className="text-gray-900 dark:text-white px-6 py-4">Tech</a>
+      <Link href="/blog" className="text-gray-900 dark:text-white px-6 py-4">
+        Tech
       </Link>
       {/* <Link href="/dashboard">
         <a className="text-gray-900 dark:text-white px-6 py-4">Dashboard</a>
       </Link> */}
-      <Link href="/about">
-        <a className="text-gray-900 dark:text-white px-6 py-4">About</a>
+      <Link href="/about" className="text-gray-900 dark:text-white px-6 py-4">
+        About
       </Link>
-      <Link href="/pop">
-        <a className="text-gray-900 dark:text-white px-6 py-4">Pop Cult</a>
+      <Link href="/pop" className="text-gray-900 dark:text-white px-6 py-4">
+        Pop Cult
       </Link>
     </nav>
   );

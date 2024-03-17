@@ -28,16 +28,19 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
             </p>
           </div>
           <h1 className="mb-2 text-xl">
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
-                {post.title}
-              </a>
+            <Link
+              as={`/posts/${post.slug}`}
+              href={`/posts/[slug]`}
+              className="text-gray-900 dark:text-white dark:hover:text-blue-400">
+
+              {post.title}
+
             </Link>
           </h1>
           <p className="mb-3">{post.description}</p>
           <p>
             <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a>Read More</a>
+              Read More
             </Link>
           </p>
         </article>
