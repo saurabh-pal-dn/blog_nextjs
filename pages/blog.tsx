@@ -31,7 +31,8 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
             <Link
               as={`/posts/${post.slug}`}
               href={`/posts/[slug]`}
-              className="text-gray-900 dark:text-white dark:hover:text-blue-400">
+              className="text-gray-900 dark:text-white dark:hover:text-blue-400"
+              legacyBehavior>
 
               {post.title}
 
