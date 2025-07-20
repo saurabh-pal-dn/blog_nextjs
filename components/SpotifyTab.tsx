@@ -1,4 +1,16 @@
 import useSWR from 'swr';
+const imageUrls = [
+  'https://i.scdn.co/image/ab67616d0000b273f10439addbeefd4ecc1dd9d7',
+  'https://i.scdn.co/image/ab67616d0000b273982320da137d0de34410df61',
+  'https://i.scdn.co/image/ab67616d0000b2737a7e086c8705b91d247c2c24',
+  'https://i.scdn.co/image/ab67616d0000b2730c5b0b80fa8f564ddd3328c3',
+  'https://i.scdn.co/image/ab67616d0000b2732c920431e9c8d1a9b632bcd0',
+  'https://i.scdn.co/image/ab67616d0000b27313c6cb6a81c8db4dbc8b9924',
+  'https://i.scdn.co/image/ab67616d0000b2732a46046339bd779f95a8cf8b',
+];
+const randomIndex = Math.floor(Math.random() * imageUrls.length);
+
+const backgroundImageurl = imageUrls[randomIndex];
 
 const SpotifyTab = (): JSX.Element => {
   const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -10,14 +22,22 @@ const SpotifyTab = (): JSX.Element => {
   return (
     <>
       <div className="css-foz3qc">
-        <div className="css-ewsei0">
+        <div
+          className="css-ewsei0"
+          style={{
+            background: `url(${backgroundImageurl})`,
+          }}
+        >
           <div className="chakra-skeleton css-cdkrf0">
             <img
               alt="Spotify album cover"
               className="chakra-image css-1febq2i"
               width={'100px'}
               height={'100px'}
-              src={song.album?.image || '/images/album_art.webp'}
+              src={
+                song.album?.image ||
+                'https://i.scdn.co/image/ab67616d0000b273982320da137d0de34410df61'
+              }
             />
           </div>
 
@@ -26,14 +46,17 @@ const SpotifyTab = (): JSX.Element => {
               target="_blank"
               rel="noopener noreferrer"
               className="chakra-link css-mxtkhh"
-              href={song.url}
+              href={
+                song.url ||
+                'https://open.spotify.com/track/7DY756WOLyOz2Xnhw4EFiC'
+              }
             >
               <p className="chakra-text css-i3jkqk">
-                {song.title || 'Not Playing'}{' '}
+                {song.title || 'São Paulo (feat. Anitta)'}
               </p>
             </a>
             <p className="chakra-text css-1vsww04">
-              {song.artists?.name[0] || 'Spotify'}
+              {song.artists?.name[0] || 'The Weeknd'}
             </p>
           </div>
           <svg
