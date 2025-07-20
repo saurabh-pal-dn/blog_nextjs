@@ -10,7 +10,7 @@ import ViewCounter from '../components/ViewCounter';
 import {
   personalDescriptonAdjectives,
   personalDescriptonAdjectivesLength,
-} from '../utils/mdxUtils';
+} from '../constants/constants';
 
 export type IndexProps = {
   techPosts: PostType[];
