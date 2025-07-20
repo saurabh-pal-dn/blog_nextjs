@@ -8,9 +8,6 @@ const imageUrls = [
   'https://i.scdn.co/image/ab67616d0000b27313c6cb6a81c8db4dbc8b9924',
   'https://i.scdn.co/image/ab67616d0000b2732a46046339bd779f95a8cf8b',
 ];
-const randomIndex = Math.floor(Math.random() * imageUrls.length);
-
-const backgroundImageurl = imageUrls[randomIndex];
 
 const SpotifyTab = (): JSX.Element => {
   const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -18,6 +15,8 @@ const SpotifyTab = (): JSX.Element => {
     refreshInterval: 5 * 1000,
     fallbackData: 'loading',
   });
+  const randomIndex = Math.floor(Math.random() * imageUrls.length);
+  const backgroundImageurl = imageUrls[randomIndex];
 
   return (
     <>
