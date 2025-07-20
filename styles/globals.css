@@ -165,11 +165,12 @@ pre {
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  border: 1px solid;
-  border-radius: 8px;
-  border-color: #7a7575;
+  border: 3px solid;
+  border-radius: 12px;
+  border-color: #d3cfcf;
   padding: var(--chakra-space-2);
   width: 300px;
+  /* filter: blur(10px); */
 }
 
 .css-foz3qc {
@@ -219,10 +220,26 @@ pre {
 }
 
 .css-1febq2i {
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
   border-radius: 18px;
   padding: 10%;
+  border-color: aliceblue;
+  object-fit: cover; /* Ensures the image covers the container */
+  animation: zoom-in-zoom-out 2s ease-out infinite; /* Apply the animation */
+  border: 6px;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* Adjust zoom level */
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .css-1meimlm {
