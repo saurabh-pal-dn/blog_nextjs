@@ -13,12 +13,10 @@ const ThemeSwitch = (): JSX.Element => {
   // After mounting, we have access to the theme
   React.useEffect(() => setMounted(true), []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   const isDark = theme === 'dark';
-  const color = isDark ? '#fff' : '#000';
+  const color = isDark ? '#333333' : '#000';
   const maskColor = isDark ? '#000' : '#fff';
   return (
     <button

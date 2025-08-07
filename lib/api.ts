@@ -31,15 +31,9 @@ function sanitizeFields(ctx: {
   const { data, content } = matter(fileContents);
 
   fields.forEach((field) => {
-    if (field === 'slug') {
-      items[field] = realSlug;
-    }
-    if (field === 'content') {
-      items[field] = content;
-    }
-    if (data[field]) {
-      items[field] = data[field];
-    }
+    if (field === 'slug') items[field] = realSlug;
+    if (field === 'content') items[field] = content;
+    if (data[field]) items[field] = data[field];
   });
   return items;
 }
