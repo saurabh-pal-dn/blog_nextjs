@@ -27,7 +27,7 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
       <h1>
         <strong>
           <Typewriter
-            onInit={(typewriter) => {
+            onInit={(typewriter): void => {
               typewriter
                 .typeString('I am ')
                 .pauseFor(900)

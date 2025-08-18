@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import useSWR from 'swr';
 
-function getCounterText(views: number) {
+function getCounterText(views: number): string {
   if (views > 1) return `${views.toLocaleString()} views`;
-
   return `${views.toLocaleString()} view`;
 }
 

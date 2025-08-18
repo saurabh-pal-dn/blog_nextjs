@@ -10,7 +10,7 @@ const imageUrls = [
 ];
 
 const SpotifyTab = (): JSX.Element => {
-  const fetcher = (url) => fetch(url).then((r) => r.json());
+  const fetcher = (url): Promise<any> => fetch(url).then((r) => r.json());
   const { data: song } = useSWR('/api/spotify', fetcher, {
     refreshInterval: 5 * 1000,
     fallbackData: 'loading',

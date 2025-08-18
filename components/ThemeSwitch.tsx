@@ -1,11 +1,6 @@
 import { useTheme } from 'next-themes';
 import React from 'react';
 
-/**
- * Based off of gatsby-theme-novela
- * https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
- */
-
 const ThemeSwitch = (): JSX.Element => {
   const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
@@ -23,7 +18,7 @@ const ThemeSwitch = (): JSX.Element => {
       className="theme-button"
       type="button"
       aria-label="Toggle Dark Mode"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={(): void => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <div className="moon-or-sun" />
       <div className="moon-mask" />

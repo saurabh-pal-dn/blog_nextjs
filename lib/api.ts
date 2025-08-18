@@ -12,7 +12,7 @@ function checkForPopMdx(fullPath: string): boolean {
   return /.pop.mdx$/.test(fullPath);
 }
 
-function getPostHelperFunction(posts: PostItems[]) {
+function getPostHelperFunction(posts: PostItems[]): PostItems[] {
   return posts
     .filter((post) => !!post)
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
@@ -22,7 +22,7 @@ function sanitizeFields(ctx: {
   fields: string[];
   fullPath: string;
   slug: string;
-}) {
+}): PostItems {
   const { fields, fullPath, slug } = ctx;
   const items: PostItems = {};
   const realSlug = slug.replace(/\.mdx$/, '');

@@ -32,10 +32,9 @@ export const PopCulture = ({ popPosts }: IndexProps): JSX.Element => {
               as={`/posts/pop/${post.slug}`}
               href={`/posts/pop/[slug]`}
               className="text-gray-900 dark:text-white dark:hover:text-blue-400"
-              legacyBehavior>
-
+              legacyBehavior
+            >
               {post.title}
-
             </Link>
           </h1>
           <p className="mb-3">{post.description}</p>
