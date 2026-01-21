@@ -47,7 +47,7 @@ const PopPostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
           {format(parseISO(frontMatter.date), 'MMMM dd, yyyy')}
         </p>
         <div className="prose dark:prose-dark">
-          <MDXRemote {...source} components={components} />
+          <MDXRemote {...source} components={components as any} />
         </div>
       </article>
     </Layout>
