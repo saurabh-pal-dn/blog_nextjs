@@ -40,3 +40,4 @@ tsconfig.tsbuildinfo
 target/
 Cargo.lock
 yarn.lock
+next-env.d.ts
