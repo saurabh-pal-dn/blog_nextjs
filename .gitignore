@@ -41,3 +41,4 @@ target/
 Cargo.lock
 yarn.lock
 next-env.d.ts
+next-env.d.ts
