@@ -29,7 +29,7 @@ const SpotifyTab = (): JSX.Element => {
         <div
           className="css-ewsei0"
           style={{
-            backgroundColor: '#333333',
+            backgroundColor: '#297d75',
           }}
         >
           <div className="chakra-skeleton css-cdkrf0">
