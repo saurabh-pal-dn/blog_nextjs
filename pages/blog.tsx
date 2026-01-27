@@ -21,7 +21,8 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
         <article key={post.slug} className="mt-12">
           <div className="flow-root">
             <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+              {format(parseISO(post.date), 'MMMM dd, yyyy')} | ~
+              {post.readDurationinMinutes} mins read
             </p>
             <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
               <ViewCounter slug={post.slug} />
@@ -32,10 +33,9 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
               as={`/posts/${post.slug}`}
               href={`/posts/[slug]`}
               className="text-gray-900 dark:text-white dark:hover:text-blue-400"
-              legacyBehavior>
-
+              legacyBehavior
+            >
               {post.title}
-
             </Link>
           </h1>
           <p className="mb-3">{post.description}</p>
@@ -51,7 +51,13 @@ export const Blog = ({ techPosts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps = () => {
-  const techPosts = getAllPosts(['date', 'description', 'slug', 'title']);
+  const techPosts = getAllPosts([
+    'date',
+    'description',
+    'slug',
+    'title',
+    'readDurationinMinutes',
+  ]);
   return {
     props: { techPosts },
   };

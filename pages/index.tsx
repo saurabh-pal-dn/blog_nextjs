@@ -83,7 +83,8 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
         <article key={post.slug} className="mt-12">
           <div className="flow-root">
             <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+              {format(parseISO(post.date), 'MMMM dd, yyyy')} | ~
+              {post.readDurationinMinutes} mins read
             </p>
             <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
               <ViewCounter slug={post.slug} />
@@ -111,7 +112,8 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
         <article key={post.slug} className="mt-12">
           <div className="flow-root">
             <p className="mb-1 float-left text-sm text-gray-500 dark:text-gray-400">
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+              {format(parseISO(post.date), 'MMMM dd, yyyy')} | ~
+              {post.readDurationinMinutes} mins read
             </p>
             <p className="mb-1 float-right text-sm text-gray-500 dark:text-gray-400">
               <ViewCounter slug={post.slug} />
@@ -139,8 +141,20 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const techPosts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const popPosts = getAllPopPosts(['date', 'description', 'slug', 'title']);
+  const techPosts = getAllPosts([
+    'date',
+    'description',
+    'slug',
+    'title',
+    'readDurationinMinutes',
+  ]);
+  const popPosts = getAllPopPosts([
+    'date',
+    'description',
+    'slug',
+    'title',
+    'readDurationinMinutes',
+  ]);
   return {
     props: { techPosts, popPosts },
   };
