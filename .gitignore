@@ -42,3 +42,5 @@ Cargo.lock
 yarn.lock
 next-env.d.ts
 next-env.d.ts
+addReadDurationinMinutes.sh
+posts_originals.zip
