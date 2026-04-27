@@ -11,7 +11,7 @@ const ThemeSwitch = (): JSX.Element => {
   if (!mounted) return null;
 
   const isDark = theme === 'dark';
-  const color = isDark ? '#333333' : '#000';
+  const color = isDark ? '#fff' : '#000';
   const maskColor = isDark ? '#000' : '#fff';
   return (
     <button
@@ -47,7 +47,7 @@ const ThemeSwitch = (): JSX.Element => {
           border-color: ${color};
           background: ${color};
           transform: scale(${isDark ? 0.5 : 1});
-          transition: all 0.45s ease;
+          transition: all 1s ease;
           overflow: ${isDark ? 'visible' : 'hidden'};
         }
         .moon-or-sun::before {
@@ -62,7 +62,7 @@ const ThemeSwitch = (): JSX.Element => {
           border-radius: 50%;
           transform: translate(${isDark ? '14px, -14px' : '0, 0'});
           opacity: ${isDark ? 0 : 1};
-          transition: transform 0.45s ease;
+          transition: transform 1s ease;
         }
         .moon-or-sun::after {
           content: '';
@@ -90,7 +90,7 @@ const ThemeSwitch = (): JSX.Element => {
           background: ${maskColor};
           transform: translate(${isDark ? '4px, -4px' : '0, 0'});
           opacity: ${isDark ? 0 : 1};
-          transition: transform 0.45s ease;
+          transition: transform 1s ease;
         }
       `}</style>
     </button>
