@@ -44,3 +44,6 @@ next-env.d.ts
 next-env.d.ts
 addReadDurationinMinutes.sh
 posts_originals.zip
+yarn.lock
+package.json
+package-lock.json
