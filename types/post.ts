@@ -6,3 +6,5 @@ export type PostType = {
   title: string;
   readDurationinMinutes: string;
 };
+
+export type PostTypeCategory = 'Tech' | 'PopCulture' | 'website';

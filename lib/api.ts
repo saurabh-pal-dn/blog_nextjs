@@ -18,12 +18,11 @@ function getPostHelperFunction(posts: PostItems[]): PostItems[] {
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 }
 
-function sanitizeFields(ctx: {
-  fields: string[];
-  fullPath: string;
-  slug: string;
-}): PostItems {
-  const { fields, fullPath, slug } = ctx;
+function sanitizeFields(
+  fields: string[],
+  fullPath: string,
+  slug: string
+): PostItems {
   const items: PostItems = {};
   const realSlug = slug.replace(/\.mdx$/, '');
 
@@ -59,13 +58,13 @@ function getPostBySlug(slug: string, fields: string[] = []): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
   if (checkForPopMdx(fullPath)) return null;
-  return sanitizeFields({ fields, fullPath, slug });
+  return sanitizeFields(fields, fullPath, slug);
 }
 
 function getPopPostBySlug(slug: string, fields: string[] = []): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POP_POSTS_PATH, `${realSlug}.mdx`);
-  return sanitizeFields({ fields, fullPath, slug });
+  return sanitizeFields(fields, fullPath, slug);
 }
 
 export function getAllPosts(fields: string[] = []): PostItems[] {

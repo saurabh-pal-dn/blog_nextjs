@@ -1,27 +1,11 @@
 import useSWR from 'swr';
-/*
-const imageUrls = [
-  'https://i.scdn.co/image/ab67616d0000b273f10439addbeefd4ecc1dd9d7',
-  'https://i.scdn.co/image/ab67616d0000b273982320da137d0de34410df61',
-  'https://i.scdn.co/image/ab67616d0000b2737a7e086c8705b91d247c2c24',
-  'https://i.scdn.co/image/ab67616d0000b2730c5b0b80fa8f564ddd3328c3',
-  'https://i.scdn.co/image/ab67616d0000b2732c920431e9c8d1a9b632bcd0',
-  'https://i.scdn.co/image/ab67616d0000b27313c6cb6a81c8db4dbc8b9924',
-  'https://i.scdn.co/image/ab67616d0000b2732a46046339bd779f95a8cf8b',
-];
-*/
 
 const SpotifyTab = (): JSX.Element => {
-  const fetcher = (url): Promise<any> => fetch(url).then((r) => r.json());
-  const { data: song } = useSWR('/api/spotify', fetcher, {
+  const { data: song } = useSWR('/api/spotify', {
     refreshInterval: 5 * 1000,
     fallbackData: 'loading',
   });
 
-  /* 
-  const randomIndex = Math.floor(Math.random() * imageUrls.length);
-  const backgroundImageurl = imageUrls[randomIndex];
-  */
 
   return (
     <>

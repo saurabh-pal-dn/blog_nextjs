@@ -11,6 +11,3 @@ export const personalDescriptonAdjectives: string[] = [
   'Restless',
   'and much more ....',
 ];
-export const personalDescriptonAdjectivesLength: number[] = [
-  11, 10, 8, 9, 9, 16, 8, 18,
-];

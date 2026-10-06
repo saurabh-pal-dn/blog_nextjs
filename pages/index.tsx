@@ -7,10 +7,19 @@ import { getAllPopPosts, getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
 import Typewriter from 'typewriter-effect';
 import ViewCounter from '../components/ViewCounter';
-import {
-  personalDescriptonAdjectives,
-  personalDescriptonAdjectivesLength,
-} from '../constants/constants';
+import { personalDescriptonAdjectives } from '../constants/constants';
+
+const TYPED_ADJECTIVES = personalDescriptonAdjectives.slice(0, -1);
+const TYPED_COLORS = [
+  '#27ae60',
+  '#6A7FDB',
+  '#27ae60',
+  '#3399ff',
+  '#6A7FDB',
+  '#57E2E5',
+  '#00A8E8',
+];
+const LAST_ADJECTIVE = personalDescriptonAdjectives.slice(-1)[0];
 
 export type IndexProps = {
   techPosts: PostType[];
@@ -28,46 +37,18 @@ export const Index = ({ techPosts, popPosts }: IndexProps): JSX.Element => {
         <strong>
           <Typewriter
             onInit={(typewriter): void => {
+              typewriter.typeString('I am ').pauseFor(900);
+              TYPED_ADJECTIVES.forEach((word, i) => {
+                typewriter
+                  .typeString(
+                    `<strong style="color: ${TYPED_COLORS[i]};">${word}</strong>`
+                  )
+                  .pauseFor(1e3)
+                  .deleteChars(word.length);
+              });
               typewriter
-                .typeString('I am ')
-                .pauseFor(900)
                 .typeString(
-                  `<strong style="color: #27ae60;">${personalDescriptonAdjectives[0]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[0])
-                .typeString(
-                  `<strong style="color: #6A7FDB;">${personalDescriptonAdjectives[1]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[1])
-                .typeString(
-                  `<strong style="color: #27ae60;">${personalDescriptonAdjectives[2]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[2])
-                .typeString(
-                  `<strong style="color: #3399ff;">${personalDescriptonAdjectives[3]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[3])
-                .typeString(
-                  `<strong style="color: #6A7FDB;">${personalDescriptonAdjectives[4]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[4])
-                .typeString(
-                  `<strong style="color: #57E2E5;">${personalDescriptonAdjectives[5]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteChars(personalDescriptonAdjectivesLength[5])
-                .typeString(
-                  `<strong style="color: #00A8E8;">${personalDescriptonAdjectives[6]}</strong>`
-                )
-                .pauseFor(1e3)
-                .deleteAll()
-                .typeString(
-                  `<strong style="color: #57E2E5;">and much more ....</strong>`
+                  `<strong style="color: #57E2E5;">${LAST_ADJECTIVE}</strong>`
                 )
                 .pauseFor(1e3)
                 .deleteAll()

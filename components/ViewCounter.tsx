@@ -7,8 +7,7 @@ function getCounterText(views: number): string {
 }
 
 const ViewCounter = ({ slug }): JSX.Element => {
-  const fetcher = (url) => fetch(url).then((r) => r.json());
-  const { data } = useSWR(`/api/views/${slug}`, fetcher);
+  const { data } = useSWR(`/api/views/${slug}`);
   const views: number = data?.total ?? 0; // this is required because in the initial run, data is returned as undefined as the hook passes a promise, later data is populated
 
   useEffect(() => {

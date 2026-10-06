@@ -1,5 +1,4 @@
-import { PostType } from './post';
-import { PostTypeCategory } from './postTypeCategories';
+import { PostType, PostTypeCategory } from './post';
 
 export interface MetaProps
   extends Pick<PostType, 'date' | 'description' | 'image' | 'title'> {
